@@ -106,17 +106,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"../js/colorChanger.js":[function(require,module,exports) {
 module.exports = {
-  colorChanger: function colorChanger(colors, square) {
-    square.style.backgroundColor = colors[4];
+  colorChanger: function colorChanger() {
+    var colors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'magenta', 'coral', 'cyan', 'linen', 'violet', 'tomato'];
+    var length = colors.length;
+    var index = Math.floor(Math.random() * length);
+    var square = document.querySelector('.simon .game-square');
+    square.style.backgroundColor = colors[index];
   }
 };
 },{}],"../js/main.js":[function(require,module,exports) {
-var colors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'magenta', 'coral', 'cyan', 'linen', 'violet', 'tomato'];
-var simonSquare = document.querySelector('.simon .game-square');
-
 var colorChanger = require('./colorChanger.js');
 
-colorChanger.colorChanger(colors, simonSquare);
+setInterval(colorChanger.colorChanger, 6000);
 },{"./colorChanger.js":"../js/colorChanger.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -144,7 +145,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51398" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61091" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
