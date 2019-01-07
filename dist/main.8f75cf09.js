@@ -104,9 +104,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../js/main.js":[function(require,module,exports) {
-console.log('hello world');
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"../js/colorChanger.js":[function(require,module,exports) {
+module.exports = {
+  colorChanger: function colorChanger(colors, square) {
+    square.style.backgroundColor = colors[4];
+  }
+};
+},{}],"../js/main.js":[function(require,module,exports) {
+var colors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'magenta', 'coral', 'cyan', 'linen', 'violet', 'tomato'];
+var simonSquare = document.querySelector('.simon .game-square');
+
+var colorChanger = require('./colorChanger.js');
+
+colorChanger.colorChanger(colors, simonSquare);
+},{"./colorChanger.js":"../js/colorChanger.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -133,7 +144,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62644" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51398" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
