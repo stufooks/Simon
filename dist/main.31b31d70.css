@@ -1,15 +1,21 @@
 body {
   margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 20vh 70vh 10vh;
 }
 
 header {
   text-align: center;
+  grid-row: 1;
 }
 
-.game-square {
-  height: 12vh;
-  width: 12vh;
-  border: 1px solid black;
+main {
+  grid-row: 2;
+}
+
+section {
+  text-align: center;
 }
 
 .squares-container {
@@ -19,11 +25,21 @@ header {
   align-items: center;
 }
 
-section {
-  text-align: center;
+.game-square {
+  margin: 2vh;
+  height: 12vh;
+  width: 12vh;
+  border: 1px solid black;
+}
+
+input {
+  width: 12vh;
+  height: 3vh;
+  margin: 0 2vh 2vh 2vh;
 }
 
 footer {
+  grid-row: 3;
   display: flex;
   justify-content: flex-end;
   align-items: center;
