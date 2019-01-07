@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/stufooks/Simon/issues"
   },
-  "homepage": "https://github.com/stufooks/Simon#readme"
+  "homepage": "https://github.com/stufooks/Simon#readme",
+  "devDependencies": {
+    "pug": "^2.0.3",
+    "sass": "^1.15.3"
+  }
 }
