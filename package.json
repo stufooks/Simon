@@ -1,0 +1,20 @@
+{
+  "name": "Simon",
+  "version": "1.0.0",
+  "description": "GA WDI Project 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stufooks/Simon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stufooks/Simon/issues"
+  },
+  "homepage": "https://github.com/stufooks/Simon#readme"
+}
