@@ -1,3 +1,30 @@
 body {
   margin: 0;
 }
+
+header {
+  text-align: center;
+}
+
+.game-square {
+  height: 12vh;
+  width: 12vh;
+  border: 1px solid black;
+}
+
+.squares-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
