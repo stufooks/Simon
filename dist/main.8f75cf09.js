@@ -138,7 +138,17 @@ var highlight = function highlight(color) {
   currentSquare.classList.add('highlighted');
 };
 
-var removeHighlight = function removeHighlight() {};
+var removeHighlight = function removeHighlight(color) {
+  var currentSquare;
+
+  for (var _i4 = 0; _i4 < squares.length; _i4++) {
+    if (squares[_i4].style.backgroundColor === color) {
+      currentSquare = squares[_i4];
+    }
+  }
+
+  currentSquare.classList.remove('highlighted');
+};
 
 var i = 0;
 
@@ -146,12 +156,15 @@ var loop = function loop() {
   setTimeout(function () {
     var currentColor = sequence[i];
     highlight(currentColor);
+    setTimeout(function () {
+      removeHighlight(currentColor);
+    }, 500);
     i++;
 
     if (i < sequence.length) {
       loop();
     }
-  }, 3000);
+  }, 2000);
 };
 
 loop();
@@ -182,7 +195,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62254" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50522" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

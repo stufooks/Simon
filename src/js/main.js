@@ -33,8 +33,14 @@ const highlight = function(color) {
     currentSquare.classList.add('highlighted')
 }
 
-const removeHighlight = function() {
-
+const removeHighlight = function(color) {
+    let currentSquare
+    for (let i = 0; i < squares.length; i++) {
+        if (squares[i].style.backgroundColor === color) {
+            currentSquare = squares[i]
+        }
+    }
+    currentSquare.classList.remove('highlighted')
 }
 
 let i = 0
@@ -42,11 +48,14 @@ const loop = function () {
    setTimeout( function () {
         let currentColor = sequence[i]
         highlight(currentColor)
+        setTimeout( function () {
+            removeHighlight(currentColor)
+        }, 500)
         i++
         if (i < sequence.length) {
             loop()
         }
-   }, 3000)
+   }, 2000)
 }
 
 loop()
