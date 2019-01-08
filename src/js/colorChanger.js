@@ -5,14 +5,6 @@ module.exports = {
             'blue',
             'green',
             'yellow',
-            'purple',
-            'pink',
-            'magenta',
-            'coral',
-            'cyan',
-            'linen',
-            'violet',
-            'tomato'
         ]
         let length = colors.length
         let index = Math.floor(Math.random() * length)
