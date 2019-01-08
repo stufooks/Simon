@@ -1,4 +1,4 @@
-//style game board
+//set up constants
 const squares = document.querySelectorAll('.squares-container .game-square')
 const colors = [
     'green',
@@ -6,14 +6,10 @@ const colors = [
     'yellow',
     'blue'
 ]
-
-for (let i = 0; i < squares.length; i++) {
-    squares[i].style.backgroundColor = colors[i]
-}
-
-//create random array of colors
 let level = 1
 let sequence = []
+
+//create random array of colors
 for (let i = 0; i < (level + 2); i++) {
     let random = Math.random()
     let length = colors.length
@@ -26,7 +22,7 @@ console.log(sequence)
 const highlight = function(color) {
     let currentSquare
     for (let i = 0; i < squares.length; i++) {
-        if (squares[i].style.backgroundColor === color) {
+        if (squares[i].id === color) {
             currentSquare = squares[i]
         }
     }
@@ -36,7 +32,7 @@ const highlight = function(color) {
 const removeHighlight = function(color) {
     let currentSquare
     for (let i = 0; i < squares.length; i++) {
-        if (squares[i].style.backgroundColor === color) {
+        if (squares[i].id === color) {
             currentSquare = squares[i]
         }
     }
@@ -44,18 +40,27 @@ const removeHighlight = function(color) {
 }
 
 let i = 0
-const loop = function () {
+const gameLoop = function () {
    setTimeout( function () {
         let currentColor = sequence[i]
         highlight(currentColor)
         setTimeout( function () {
             removeHighlight(currentColor)
-        }, 500)
+        }, 1000)
         i++
         if (i < sequence.length) {
-            loop()
+            gameLoop()
         }
-   }, 2000)
+   }, 1500)
 }
 
-loop()
+gameLoop()
+
+//now get the user's response
+// const clickHandler = function (evt) {
+//     evt.target
+// }
+
+// for (let i = 0; i < squares.length; i++) {
+//     squares[i].addEventListener('click', clickHandler)
+// }

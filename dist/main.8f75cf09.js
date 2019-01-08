@@ -105,19 +105,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"../js/main.js":[function(require,module,exports) {
-//style game board
+//set up constants
 var squares = document.querySelectorAll('.squares-container .game-square');
 var colors = ['green', 'red', 'yellow', 'blue'];
-
-for (var _i = 0; _i < squares.length; _i++) {
-  squares[_i].style.backgroundColor = colors[_i];
-} //create random array of colors
-
-
 var level = 1;
-var sequence = [];
+var sequence = []; //create random array of colors
 
-for (var _i2 = 0; _i2 < level + 2; _i2++) {
+for (var _i = 0; _i < level + 2; _i++) {
   var random = Math.random();
   var length = colors.length;
   var index = Math.floor(length * random);
@@ -129,9 +123,9 @@ console.log(sequence); // change borders of game squares in order of sequence
 var highlight = function highlight(color) {
   var currentSquare;
 
-  for (var _i3 = 0; _i3 < squares.length; _i3++) {
-    if (squares[_i3].style.backgroundColor === color) {
-      currentSquare = squares[_i3];
+  for (var _i2 = 0; _i2 < squares.length; _i2++) {
+    if (squares[_i2].id === color) {
+      currentSquare = squares[_i2];
     }
   }
 
@@ -141,9 +135,9 @@ var highlight = function highlight(color) {
 var removeHighlight = function removeHighlight(color) {
   var currentSquare;
 
-  for (var _i4 = 0; _i4 < squares.length; _i4++) {
-    if (squares[_i4].style.backgroundColor === color) {
-      currentSquare = squares[_i4];
+  for (var _i3 = 0; _i3 < squares.length; _i3++) {
+    if (squares[_i3].id === color) {
+      currentSquare = squares[_i3];
     }
   }
 
@@ -152,22 +146,28 @@ var removeHighlight = function removeHighlight(color) {
 
 var i = 0;
 
-var loop = function loop() {
+var gameLoop = function gameLoop() {
   setTimeout(function () {
     var currentColor = sequence[i];
     highlight(currentColor);
     setTimeout(function () {
       removeHighlight(currentColor);
-    }, 500);
+    }, 1000);
     i++;
 
     if (i < sequence.length) {
-      loop();
+      gameLoop();
     }
-  }, 2000);
+  }, 1500);
 };
 
-loop();
+gameLoop(); //now get the user's response
+// const clickHandler = function (evt) {
+//     evt.target
+// }
+// for (let i = 0; i < squares.length; i++) {
+//     squares[i].addEventListener('click', clickHandler)
+// }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
