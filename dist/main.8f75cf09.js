@@ -108,17 +108,23 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 //set up constants
 var squares = document.querySelectorAll('.squares-container .game-square');
 var colors = ['green', 'red', 'yellow', 'blue'];
-var level = 1;
-var sequence = []; //create random array of colors
+var turn = 1;
+var sequence = [];
+var userResponse = [];
+var i = 0; //create random array of colors -------------------------------------------------------------
 
-for (var _i = 0; _i < level + 2; _i++) {
-  var random = Math.random();
-  var length = colors.length;
-  var index = Math.floor(length * random);
-  sequence.push(colors[index]);
-}
+var randomizer = function randomizer() {
+  for (var _i = 0; _i < turn + 2; _i++) {
+    var random = Math.random();
+    var length = colors.length;
+    var index = Math.floor(length * random);
+    sequence.push(colors[index]);
+  }
+}; // const randomizer = require('./randomizer.js')
+// const sequence = randomizer.randomizer(colors, turn)
+// console.log(sequence)
+// change borders of game squares in order of the sequence ------------------------------------
 
-console.log(sequence); // change borders of game squares in order of sequence
 
 var highlight = function highlight(color) {
   var currentSquare = squares[0];
@@ -144,11 +150,10 @@ var removeHighlight = function removeHighlight(color) {
   currentSquare.classList.remove('highlighted');
 };
 
-var i = 0;
-
 var gameLoop = function gameLoop() {
   setTimeout(function () {
     var currentColor = sequence[i];
+    console.log(currentColor);
     highlight(currentColor);
     setTimeout(function () {
       removeHighlight(currentColor);
@@ -161,10 +166,17 @@ var gameLoop = function gameLoop() {
   }, 1300);
 };
 
-var button = document.querySelector('button');
-button.addEventListener('click', gameLoop); //now get the user's response
+var playGame = function playGame() {
+  sequence = [];
+  randomizer();
+  console.log(sequence);
+  i = 0;
+  gameLoop();
+  turn++;
+};
 
-var userResponse = [];
+var button = document.querySelector('header button');
+button.addEventListener('click', playGame); //now get the user's response -------------------------------------------------------------
 
 var clickHandler = function clickHandler(evt) {
   var guess = evt.target.id;
@@ -181,7 +193,7 @@ var clickHandler = function clickHandler(evt) {
 
 for (var _i4 = 0; _i4 < squares.length; _i4++) {
   squares[_i4].addEventListener('click', clickHandler);
-} //now compare user's response to the sequence
+} //now compare user's response to the sequence -----------------------------------------------
 
 
 var winTester = function winTester(userResponse) {
@@ -222,7 +234,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50522" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58920" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
