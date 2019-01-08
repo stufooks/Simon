@@ -109,15 +109,15 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var squares = document.querySelectorAll('.squares-container .game-square');
 var colors = ['green', 'red', 'yellow', 'blue'];
 
-for (var i = 0; i < squares.length; i++) {
-  squares[i].style.backgroundColor = colors[i];
+for (var _i = 0; _i < squares.length; _i++) {
+  squares[_i].style.backgroundColor = colors[_i];
 } //create random array of colors
 
 
 var level = 1;
 var sequence = [];
 
-for (var _i = 0; _i < level + 2; _i++) {
+for (var _i2 = 0; _i2 < level + 2; _i2++) {
   var random = Math.random();
   var length = colors.length;
   var index = Math.floor(length * random);
@@ -126,34 +126,35 @@ for (var _i = 0; _i < level + 2; _i++) {
 
 console.log(sequence); // change borders of game squares in order of sequence
 
-var squareSelector = function squareSelector(currentColor) {
+var highlight = function highlight(color) {
   var currentSquare;
 
-  for (var j = 0; j < squares.length; j++) {
-    if (squares[j].style.backgroundColor === currentColor) {
-      currentSquare = squares[j];
-      console.log(currentSquare);
+  for (var _i3 = 0; _i3 < squares.length; _i3++) {
+    if (squares[_i3].style.backgroundColor === color) {
+      currentSquare = squares[_i3];
     }
   }
 
-  return currentSquare;
-};
-
-var highlight = function highlight(currentSquare) {
-  console.log(currentSquare);
   currentSquare.classList.add('highlighted');
 };
 
-var removeHighlight = function removeHighlight(currentSquare) {
-  currentSquare.classList.remove('highlighted');
+var removeHighlight = function removeHighlight() {};
+
+var i = 0;
+
+var loop = function loop() {
+  setTimeout(function () {
+    var currentColor = sequence[i];
+    highlight(currentColor);
+    i++;
+
+    if (i < sequence.length) {
+      loop();
+    }
+  }, 3000);
 };
 
-for (var _i2 = 0; _i2 < sequence.length; _i2++) {
-  var currentColor = sequence[_i2];
-  var currentSquare = squareSelector(currentColor);
-  highlight(currentSquare);
-  removeHighlight(currentSquare);
-}
+loop();
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
