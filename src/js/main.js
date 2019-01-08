@@ -8,7 +8,7 @@ const colors = [
 ]
 let turn = 1
 let sequence = []
-const userResponse = []
+let userResponse = []
 let i = 0
 
 //create random array of colors -------------------------------------------------------------
@@ -63,28 +63,37 @@ const gameLoop = function () {
 }
 
 const playGame = function () {
+    clearResponses()
     sequence = []
     randomizer()
     console.log(sequence)
     i = 0
     gameLoop()
-    turn++
 }
 
-let button = document.querySelector('header button')
+let button = document.querySelector('button')
 button.addEventListener('click', playGame)
 
 
 
 //now get the user's response -------------------------------------------------------------
+let responsesContainer = document.querySelector('.responses-container')
+
 const clickHandler = function (evt) {
     let guess = evt.target.id
     userResponse.push(guess)
-    if (userResponse.length === sequence.length) {
+
+    let p = document.createElement('P')
+    p.innerHTML = guess
+    responsesContainer.appendChild(p)
+
+    if (userResponse.length >= sequence.length) {
         if (winTester(userResponse)) {
-            console.log('winner')
+            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 500)
+            turn++
         } else {
-            console.log('not quite')
+            setTimeout( function() {alert('Not quite. Guess again or press play for a new sequence.')}, 200)
+            setTimeout( function() {clearResponses()}, 200)
         }
     }
 }
@@ -102,4 +111,12 @@ const winTester = function (userResponse) {
         }
     }
     return count === sequence.length
+}
+
+const clearResponses = function () {
+    for (let i = 0; i < userResponse.length; i++) {
+        let p = document.querySelector('p')
+        responsesContainer.removeChild(p)
+    }
+    userResponse = []
 }

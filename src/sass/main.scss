@@ -2,7 +2,7 @@ body {
     margin: 0;
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: 20vh 70vh 10vh;
+    grid-auto-rows: 30vh 60vh 10vh;
 }
 
 header {
@@ -13,8 +13,9 @@ header {
 main {
     grid-row: 2;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .squares-container {
@@ -30,7 +31,6 @@ main {
     margin: .5vh;
     height: 12vh;
     width: 12vh;
-    border: 1px solid black;
 }
 
 #green {
@@ -48,6 +48,16 @@ main {
 
 .highlighted {
     border: 5px solid gold;
+}
+
+.responses-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    p {
+        margin: 2vh;
+    }
 }
 
 footer {

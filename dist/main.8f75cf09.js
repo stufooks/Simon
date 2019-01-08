@@ -167,26 +167,39 @@ var gameLoop = function gameLoop() {
 };
 
 var playGame = function playGame() {
+  clearResponses();
   sequence = [];
   randomizer();
   console.log(sequence);
   i = 0;
   gameLoop();
-  turn++;
 };
 
-var button = document.querySelector('header button');
+var button = document.querySelector('button');
 button.addEventListener('click', playGame); //now get the user's response -------------------------------------------------------------
+
+var responsesContainer = document.querySelector('.responses-container');
 
 var clickHandler = function clickHandler(evt) {
   var guess = evt.target.id;
   userResponse.push(guess);
+  var p = document.createElement('P');
+  p.innerHTML = guess;
+  responsesContainer.appendChild(p);
 
-  if (userResponse.length === sequence.length) {
+  if (userResponse.length >= sequence.length) {
     if (winTester(userResponse)) {
-      console.log('winner');
+      setTimeout(function () {
+        alert("Correct! Press 'Ready' again to try the next level.");
+      }, 500);
+      turn++;
     } else {
-      console.log('not quite');
+      setTimeout(function () {
+        alert('Not quite. Guess again or press play for a new sequence.');
+      }, 200);
+      setTimeout(function () {
+        clearResponses();
+      }, 200);
     }
   }
 };
@@ -206,6 +219,15 @@ var winTester = function winTester(userResponse) {
   }
 
   return count === sequence.length;
+};
+
+var clearResponses = function clearResponses() {
+  for (var _i6 = 0; _i6 < userResponse.length; _i6++) {
+    var p = document.querySelector('p');
+    responsesContainer.removeChild(p);
+  }
+
+  userResponse = [];
 };
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -234,7 +256,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58920" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59685" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
