@@ -33,6 +33,10 @@ main {
   border: 1px solid black;
 }
 
+.highlighted {
+  border: 5px solid yellow;
+}
+
 footer {
   grid-row: 3;
   display: flex;

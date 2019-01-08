@@ -25,12 +25,19 @@ main {
     align-items: center;
     flex-wrap: wrap;
 }
+
 .game-square {
     margin: .5vh;
     height: 12vh;
     width: 12vh;
     border: 1px solid black;
 }
+
+.highlighted {
+    border: 5px solid yellow;
+}
+
+
 
 footer {
     grid-row: 3;

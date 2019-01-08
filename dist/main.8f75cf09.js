@@ -106,12 +106,25 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"../js/main.js":[function(require,module,exports) {
 //style game board
-var squares = document.querySelectorAll('.game-square');
+var squares = document.querySelectorAll('.squares-container .game-square');
 var colors = ['green', 'red', 'yellow', 'blue'];
 
 for (var i = 0; i < squares.length; i++) {
   squares[i].style.backgroundColor = colors[i];
+} //create random array of colors
+
+
+var level = 1;
+var sequence = [];
+
+for (var _i = 0; _i < level + 2; _i++) {
+  var random = Math.random();
+  var length = colors.length;
+  var index = Math.floor(length * random);
+  sequence.push(colors[index]);
 }
+
+console.log(sequence);
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
