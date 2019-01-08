@@ -124,7 +124,36 @@ for (var _i = 0; _i < level + 2; _i++) {
   sequence.push(colors[index]);
 }
 
-console.log(sequence);
+console.log(sequence); // change borders of game squares in order of sequence
+
+var squareSelector = function squareSelector(currentColor) {
+  var currentSquare;
+
+  for (var j = 0; j < squares.length; j++) {
+    if (squares[j].style.backgroundColor === currentColor) {
+      currentSquare = squares[j];
+      console.log(currentSquare);
+    }
+  }
+
+  return currentSquare;
+};
+
+var highlight = function highlight(currentSquare) {
+  console.log(currentSquare);
+  currentSquare.classList.add('highlighted');
+};
+
+var removeHighlight = function removeHighlight(currentSquare) {
+  currentSquare.classList.remove('highlighted');
+};
+
+for (var _i2 = 0; _i2 < sequence.length; _i2++) {
+  var currentColor = sequence[_i2];
+  var currentSquare = squareSelector(currentColor);
+  highlight(currentSquare);
+  removeHighlight(currentSquare);
+}
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

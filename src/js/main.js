@@ -21,3 +21,35 @@ for (let i = 0; i < (level + 2); i++) {
     sequence.push(colors[index])
 }
 console.log(sequence)
+
+// change borders of game squares in order of sequence
+const squareSelector = function(currentColor) {
+    let currentSquare
+    for (let j = 0; j < squares.length; j++) {
+        if (squares[j].style.backgroundColor === currentColor) {
+            currentSquare = squares[j]
+            console.log(currentSquare)
+        }
+    }
+    return currentSquare
+}
+
+const highlight = function(currentSquare) {
+    console.log(currentSquare)
+    currentSquare.classList.add('highlighted')
+}
+
+const removeHighlight = function(currentSquare) {
+    currentSquare.classList.remove('highlighted')
+}
+
+for (let i = 0; i < sequence.length; i++) {
+
+    let currentColor = sequence[i]
+
+    let currentSquare = squareSelector(currentColor)
+
+    highlight(currentSquare)
+
+    removeHighlight(currentSquare)
+}
