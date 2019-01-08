@@ -104,19 +104,15 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../js/colorChanger.js":[function(require,module,exports) {
-module.exports = {
-  colorChanger: function colorChanger() {
-    var colors = ['red', 'blue', 'green', 'yellow'];
-    var length = colors.length;
-    var index = Math.floor(Math.random() * length);
-    var square = document.querySelector('.simon .game-square');
-    square.style.backgroundColor = colors[index];
-  }
-};
-},{}],"../js/main.js":[function(require,module,exports) {
-var colorChanger = require('./colorChanger.js'); // setInterval(colorChanger.colorChanger, 6000)
-},{"./colorChanger.js":"../js/colorChanger.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"../js/main.js":[function(require,module,exports) {
+//style game board
+var squares = document.querySelectorAll('.game-square');
+var colors = ['green', 'red', 'yellow', 'blue'];
+
+for (var i = 0; i < squares.length; i++) {
+  squares[i].style.backgroundColor = colors[i];
+}
+},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
