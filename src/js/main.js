@@ -57,10 +57,31 @@ const gameLoop = function () {
 gameLoop()
 
 //now get the user's response
-// const clickHandler = function (evt) {
-//     evt.target
-// }
+const userResponse = []
 
-// for (let i = 0; i < squares.length; i++) {
-//     squares[i].addEventListener('click', clickHandler)
-// }
+const clickHandler = function (evt) {
+    let guess = evt.target.id
+    userResponse.push(guess)
+    if (userResponse.length === sequence.length) {
+        if (winTester(userResponse)) {
+            console.log('winner')
+        } else {
+            console.log('not quite')
+        }
+    }
+}
+
+for (let i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('click', clickHandler)
+}
+
+//now compare user's response to the sequence
+const winTester = function (userResponse) {
+    let count = 0
+    for (let i = 0; i < sequence.length; i++) {
+        if (userResponse[i] === sequence[i]) {
+            count++
+        }
+    }
+    return count === sequence.length
+}

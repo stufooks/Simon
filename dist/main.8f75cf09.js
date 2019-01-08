@@ -162,12 +162,38 @@ var gameLoop = function gameLoop() {
 };
 
 gameLoop(); //now get the user's response
-// const clickHandler = function (evt) {
-//     evt.target
-// }
-// for (let i = 0; i < squares.length; i++) {
-//     squares[i].addEventListener('click', clickHandler)
-// }
+
+var userResponse = [];
+
+var clickHandler = function clickHandler(evt) {
+  var guess = evt.target.id;
+  userResponse.push(guess);
+
+  if (userResponse.length === sequence.length) {
+    if (winTester(userResponse)) {
+      console.log('winner');
+    } else {
+      console.log('not quite');
+    }
+  }
+};
+
+for (var _i4 = 0; _i4 < squares.length; _i4++) {
+  squares[_i4].addEventListener('click', clickHandler);
+} //now compare user's response to the sequence
+
+
+var winTester = function winTester(userResponse) {
+  var count = 0;
+
+  for (var _i5 = 0; _i5 < sequence.length; _i5++) {
+    if (userResponse[_i5] === sequence[_i5]) {
+      count++;
+    }
+  }
+
+  return count === sequence.length;
+};
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
