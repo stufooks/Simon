@@ -16,16 +16,19 @@ main {
 
 section {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .squares-container {
-    width: 100%;
+    width: 260px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 .game-square {
-    margin: 2vh;
+    margin: .5vh;
     height: 12vh;
     width: 12vh;
     border: 1px solid black;
