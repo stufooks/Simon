@@ -63,7 +63,6 @@ const gameLoop = function () {
 }
 
 const playGame = function () {
-    clearResponses()
     sequence = []
     randomizer()
     console.log(sequence)
@@ -89,10 +88,11 @@ const clickHandler = function (evt) {
 
     if (userResponse.length >= sequence.length) {
         if (winTester(userResponse)) {
-            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 500)
+            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 200)
+            setTimeout( function () {clearResponses()}, 200)
             turn++
         } else {
-            setTimeout( function() {alert('Not quite. Guess again or press play for a new sequence.')}, 200)
+            setTimeout( function() {alert("Not quite. Guess again or press 'Ready' for a new sequence.")}, 200)
             setTimeout( function() {clearResponses()}, 200)
         }
     }

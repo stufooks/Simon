@@ -3,6 +3,9 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: 30vh 60vh 10vh;
+  color: white;
+  background-color: #cfcfcf;
+  font-family: "Raleway", sans-serif;
 }
 
 header {
@@ -67,4 +70,5 @@ footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-right: 3vw;
 }

@@ -167,7 +167,6 @@ var gameLoop = function gameLoop() {
 };
 
 var playGame = function playGame() {
-  clearResponses();
   sequence = [];
   randomizer();
   console.log(sequence);
@@ -191,11 +190,14 @@ var clickHandler = function clickHandler(evt) {
     if (winTester(userResponse)) {
       setTimeout(function () {
         alert("Correct! Press 'Ready' again to try the next level.");
-      }, 500);
+      }, 200);
+      setTimeout(function () {
+        clearResponses();
+      }, 200);
       turn++;
     } else {
       setTimeout(function () {
-        alert('Not quite. Guess again or press play for a new sequence.');
+        alert("Not quite. Guess again or press 'Ready' for a new sequence.");
       }, 200);
       setTimeout(function () {
         clearResponses();
