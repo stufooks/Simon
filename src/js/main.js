@@ -20,7 +20,7 @@ console.log(sequence)
 
 // change borders of game squares in order of sequence
 const highlight = function(color) {
-    let currentSquare
+    let currentSquare = squares[0]
     for (let i = 0; i < squares.length; i++) {
         if (squares[i].id === color) {
             currentSquare = squares[i]
@@ -30,7 +30,7 @@ const highlight = function(color) {
 }
 
 const removeHighlight = function(color) {
-    let currentSquare
+    let currentSquare = squares[0]
     for (let i = 0; i < squares.length; i++) {
         if (squares[i].id === color) {
             currentSquare = squares[i]
@@ -46,15 +46,16 @@ const gameLoop = function () {
         highlight(currentColor)
         setTimeout( function () {
             removeHighlight(currentColor)
-        }, 1000)
+        }, 800)
         i++
         if (i < sequence.length) {
             gameLoop()
         }
-   }, 1500)
+   }, 1300)
 }
 
-gameLoop()
+let button = document.querySelector('button')
+button.addEventListener('click', gameLoop)
 
 //now get the user's response
 const userResponse = []

@@ -121,7 +121,7 @@ for (var _i = 0; _i < level + 2; _i++) {
 console.log(sequence); // change borders of game squares in order of sequence
 
 var highlight = function highlight(color) {
-  var currentSquare;
+  var currentSquare = squares[0];
 
   for (var _i2 = 0; _i2 < squares.length; _i2++) {
     if (squares[_i2].id === color) {
@@ -133,7 +133,7 @@ var highlight = function highlight(color) {
 };
 
 var removeHighlight = function removeHighlight(color) {
-  var currentSquare;
+  var currentSquare = squares[0];
 
   for (var _i3 = 0; _i3 < squares.length; _i3++) {
     if (squares[_i3].id === color) {
@@ -152,16 +152,17 @@ var gameLoop = function gameLoop() {
     highlight(currentColor);
     setTimeout(function () {
       removeHighlight(currentColor);
-    }, 1000);
+    }, 800);
     i++;
 
     if (i < sequence.length) {
       gameLoop();
     }
-  }, 1500);
+  }, 1300);
 };
 
-gameLoop(); //now get the user's response
+var button = document.querySelector('button');
+button.addEventListener('click', gameLoop); //now get the user's response
 
 var userResponse = [];
 
