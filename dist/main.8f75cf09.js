@@ -183,15 +183,19 @@ var clickHandler = function clickHandler(evt) {
   var p = document.createElement('P');
   p.innerHTML = guess;
   responsesContainer.appendChild(p);
+  highlight(guess);
+  setTimeout(function () {
+    removeHighlight(guess);
+  }, 300);
 
   if (userResponse.length >= sequence.length) {
     if (winTester(userResponse)) {
       setTimeout(function () {
         alert("Correct! Press 'Ready' again to try the next level.");
-      }, 200);
+      }, 350);
       setTimeout(function () {
         clearResponses();
-      }, 200);
+      }, 350);
       turn++;
       updateLevel();
     } else {
@@ -200,7 +204,7 @@ var clickHandler = function clickHandler(evt) {
       }, 200);
       setTimeout(function () {
         clearResponses();
-      }, 200);
+      }, 350);
     }
   }
 };

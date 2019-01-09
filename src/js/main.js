@@ -85,15 +85,18 @@ const clickHandler = function (evt) {
     p.innerHTML = guess
     responsesContainer.appendChild(p)
 
+    highlight(guess)
+    setTimeout(() => {removeHighlight(guess)}, 300)
+
     if (userResponse.length >= sequence.length) {
         if (winTester(userResponse)) {
-            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 200)
-            setTimeout( function () {clearResponses()}, 200)
+            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 350)
+            setTimeout( function () {clearResponses()}, 350)
             turn++
             updateLevel()
         } else {
             setTimeout( function() {alert("Not quite. Guess again, press 'Ready' for a new sequence, or press 'Reset Game' to start over.")}, 200)
-            setTimeout( function() {clearResponses()}, 200)
+            setTimeout( function() {clearResponses()}, 350)
         }
     }
 }

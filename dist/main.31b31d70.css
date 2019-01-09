@@ -26,6 +26,7 @@ main {
   align-items: center;
 }
 main .buttons-container {
+  width: 280px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -38,6 +39,9 @@ main .squares-container {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+main .levels-container {
+  width: 280px;
 }
 
 button {
