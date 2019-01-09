@@ -22,9 +22,7 @@ const randomizer = function () {
     }
 }
 
-// const randomizer = require('./randomizer.js')
-// const sequence = randomizer.randomizer(colors, turn)
-// console.log(sequence)
+// const testing = require('./randomizer.js')
 
 // change borders of game squares in order of the sequence ------------------------------------
 const highlight = function(color) {
@@ -34,7 +32,7 @@ const highlight = function(color) {
             currentSquare = squares[i]
         }
     }
-    currentSquare.style.opacity = 1;
+    currentSquare.style.opacity = 1
 
 }
 

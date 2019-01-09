@@ -20,5 +20,8 @@
   "devDependencies": {
     "pug": "^2.0.3",
     "sass": "^1.15.3"
+  },
+  "dependencies": {
+    "js": "^0.1.0"
   }
 }

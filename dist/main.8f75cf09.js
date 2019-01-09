@@ -120,9 +120,7 @@ var randomizer = function randomizer() {
     var index = Math.floor(length * random);
     sequence.push(colors[index]);
   }
-}; // const randomizer = require('./randomizer.js')
-// const sequence = randomizer.randomizer(colors, turn)
-// console.log(sequence)
+}; // const testing = require('./randomizer.js')
 // change borders of game squares in order of the sequence ------------------------------------
 
 
@@ -258,7 +256,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56777" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59916" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
