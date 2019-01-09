@@ -2,7 +2,7 @@ body {
     margin: 0;
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: 30vh 60vh 10vh;
+    grid-auto-rows: 40vh 50vh 10vh;
     color: white;
     background-color: #cfcfcf;
     font-family: 'Raleway', sans-serif;
@@ -11,6 +11,10 @@ body {
 header {
     text-align: center;
     grid-row: 1;
+
+    h1 {
+        font-size: 3em;
+    }
 }
 
 main {
@@ -31,22 +35,28 @@ main {
 }
 
 .game-square {
-    margin: .5vh;
-    height: 12vh;
-    width: 12vh;
+    margin: 1vh;
+    height: 14vh;
+    width: 14vh;
+    border: 1px solid white;
+    border-radius: 50%;
 }
 
 #green {
     background-color: green;
+    opacity: .3;
 }
 #red {
     background-color: red;
+    opacity: .3;
 }
 #yellow {
     background-color: yellow;
+    opacity: .3;
 }
 #blue {
     background-color: blue;
+    opacity: .3;
 }
 
 .highlighted {

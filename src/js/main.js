@@ -34,7 +34,8 @@ const highlight = function(color) {
             currentSquare = squares[i]
         }
     }
-    currentSquare.classList.add('highlighted')
+    currentSquare.style.opacity = 1;
+
 }
 
 const removeHighlight = function(color) {
@@ -44,7 +45,7 @@ const removeHighlight = function(color) {
             currentSquare = squares[i]
         }
     }
-    currentSquare.classList.remove('highlighted')
+    currentSquare.style.opacity = .3
 }
 
 const gameLoop = function () {

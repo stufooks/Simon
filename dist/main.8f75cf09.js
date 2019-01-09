@@ -135,7 +135,7 @@ var highlight = function highlight(color) {
     }
   }
 
-  currentSquare.classList.add('highlighted');
+  currentSquare.style.opacity = 1;
 };
 
 var removeHighlight = function removeHighlight(color) {
@@ -147,7 +147,7 @@ var removeHighlight = function removeHighlight(color) {
     }
   }
 
-  currentSquare.classList.remove('highlighted');
+  currentSquare.style.opacity = .3;
 };
 
 var gameLoop = function gameLoop() {
@@ -258,7 +258,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59685" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56777" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
