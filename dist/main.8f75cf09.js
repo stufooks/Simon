@@ -193,9 +193,10 @@ var clickHandler = function clickHandler(evt) {
         clearResponses();
       }, 200);
       turn++;
+      updateLevel();
     } else {
       setTimeout(function () {
-        alert("Not quite. Guess again or press 'Ready' for a new sequence.");
+        alert("Not quite. Guess again, press 'Ready' for a new sequence, or press 'Reset Game' to start over.");
       }, 200);
       setTimeout(function () {
         clearResponses();
@@ -231,13 +232,18 @@ var clearResponses = function clearResponses() {
 };
 
 var reset = function reset() {
-  console.log('hi');
   clearResponses();
   turn = 1;
+  updateLevel();
 };
 
 var resetButton = document.querySelector('.reset-container button');
 resetButton.addEventListener('click', reset);
+
+var updateLevel = function updateLevel() {
+  var levelDisplay = document.querySelector('span');
+  levelDisplay.innerHTML = turn;
+};
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

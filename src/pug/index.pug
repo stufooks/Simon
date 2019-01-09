@@ -10,16 +10,21 @@ html(lang="en")
         h2 Instructions:
         h4 Watch the sequence of colors as they light up, then click on the colors in the same order.
     main
-        .ready-container
-            button READY
+        .buttons-container
+            .ready-container
+                button READY
+            .reset-container
+                button RESET GAME
         .squares-container
             .game-square(id="green")
             .game-square(id="red")
             .game-square(id="yellow")
             .game-square(id="blue")
+        .levels-container
+            h2 Level: 
+                span.level 1
+    section
         .responses-container
-        .reset-container
-            button RESET
     footer
         .icon
         .name

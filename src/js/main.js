@@ -90,8 +90,9 @@ const clickHandler = function (evt) {
             setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 200)
             setTimeout( function () {clearResponses()}, 200)
             turn++
+            updateLevel()
         } else {
-            setTimeout( function() {alert("Not quite. Guess again or press 'Ready' for a new sequence.")}, 200)
+            setTimeout( function() {alert("Not quite. Guess again, press 'Ready' for a new sequence, or press 'Reset Game' to start over.")}, 200)
             setTimeout( function() {clearResponses()}, 200)
         }
     }
@@ -121,10 +122,15 @@ const clearResponses = function () {
 }
 
 const reset = function () {
-    console.log('hi')
     clearResponses()
     turn = 1
+    updateLevel()
 }
 
 let resetButton = document.querySelector('.reset-container button')
 resetButton.addEventListener('click', reset)
+
+const updateLevel = function () {
+    let levelDisplay = document.querySelector('span')
+    levelDisplay.innerHTML = turn
+}
