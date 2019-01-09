@@ -22,7 +22,14 @@ const randomizer = function () {
     }
 }
 
-// const testing = require('./randomizer.js')
+// function to add a random color to the sequence after each turn
+
+const addRandom = function () {
+    let random = Math.random()
+    let length = colors.length
+    let index = Math.floor(length * random)
+    sequence.push(colors[index])
+}
 
 // change borders of game squares in order of the sequence ------------------------------------
 const highlight = function(color) {
@@ -62,8 +69,12 @@ const gameLoop = function () {
 }
 
 const playGame = function () {
-    sequence = []
-    randomizer()
+    if (turn === 1) {
+        randomizer()
+    }
+    else {
+        addRandom()
+    }
     console.log(sequence)
     i = 0
     gameLoop()
@@ -112,6 +123,8 @@ const winTester = function (userResponse) {
     return count === sequence.length
 }
 
+
+//functions to move the game forward or reset the game -----------------------------------------------
 const clearResponses = function () {
     userResponse = []
 }
@@ -120,6 +133,7 @@ const reset = function () {
     clearResponses()
     turn = 1
     updateLevel()
+    sequence = []
 }
 
 let resetButton = document.querySelector('.reset-container button')

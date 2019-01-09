@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 html(lang="en")
-  head
-    link(href="https://fonts.googleapis.com/css?family=Roboto|Righteous" rel="stylesheet")
-    link(rel="stylesheet", href="../sass/main.scss")
-    script(src="../js/main.js")
-  body
-    header
-        h1 Simon
-        h2 Instructions:
-        h4 Watch the sequence of colors as they light up, then click on the colors in the same order.
-    main
-        .buttons-container
-            .ready-container
-                button READY
-            .reset-container
-                button RESET GAME
-        .squares-container
-            .game-square(id="green")
-            .game-square(id="red")
-            .game-square(id="yellow")
-            .game-square(id="blue")
-        .levels-container
-            h2 Level 
-                span.level 1
-    section
-        .responses-container
-    footer
-        .icon
-        .name
-            p Stuart Fooks
+    head
+        link(href="https://fonts.googleapis.com/css?family=Roboto|Righteous" rel="stylesheet")
+        link(rel="stylesheet", href="../sass/main.scss")
+    body
+        header
+            h1 Simon
+            h2 Instructions:
+            h4 Watch the sequence of colors as they light up, then click on the colors in the same order.
+        main
+            .buttons-container
+                .ready-container
+                    button READY
+                .reset-container
+                    button RESET GAME
+            .squares-container
+                .game-square(id="green")
+                .game-square(id="red")
+                .game-square(id="yellow")
+                .game-square(id="blue")
+            .levels-container
+                h2 Level 
+                    span.level 1
+        section
+            .responses-container
+        footer
+            .icon
+            .name
+                p Stuart Fooks
+        script(src="../js/main.js")

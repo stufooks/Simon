@@ -120,8 +120,15 @@ var randomizer = function randomizer() {
     var index = Math.floor(length * random);
     sequence.push(colors[index]);
   }
-}; // const testing = require('./randomizer.js')
-// change borders of game squares in order of the sequence ------------------------------------
+}; // function to add a random color to the sequence after each turn
+
+
+var addRandom = function addRandom() {
+  var random = Math.random();
+  var length = colors.length;
+  var index = Math.floor(length * random);
+  sequence.push(colors[index]);
+}; // change borders of game squares in order of the sequence ------------------------------------
 
 
 var highlight = function highlight(color) {
@@ -165,8 +172,12 @@ var gameLoop = function gameLoop() {
 };
 
 var playGame = function playGame() {
-  sequence = [];
-  randomizer();
+  if (turn === 1) {
+    randomizer();
+  } else {
+    addRandom();
+  }
+
   console.log(sequence);
   i = 0;
   gameLoop();
@@ -221,7 +232,8 @@ var winTester = function winTester(userResponse) {
   }
 
   return count === sequence.length;
-};
+}; //functions to move the game forward or reset the game -----------------------------------------------
+
 
 var clearResponses = function clearResponses() {
   userResponse = [];
@@ -231,6 +243,7 @@ var reset = function reset() {
   clearResponses();
   turn = 1;
   updateLevel();
+  sequence = [];
 };
 
 var resetButton = document.querySelector('.reset-container button');
@@ -267,7 +280,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64938" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53769" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
