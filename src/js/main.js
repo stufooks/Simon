@@ -10,6 +10,7 @@ let turn = 1
 let sequence = []
 let userResponse = []
 let i = 0
+let speed = 800
 
 //create random array of colors -------------------------------------------------------------
 
@@ -60,20 +61,18 @@ const gameLoop = function () {
         highlight(currentColor)
         setTimeout( function () {
             removeHighlight(currentColor)
-        }, 800)
+        }, speed)
         i++
         if (i < sequence.length) {
             gameLoop()
         }
-   }, 1300)
+   }, (speed + 250))
 }
 
 const playGame = function () {
     if (turn === 1) {
+        sequence = []
         randomizer()
-    }
-    else {
-        addRandom()
     }
     console.log(sequence)
     i = 0
@@ -96,14 +95,29 @@ const clickHandler = function (evt) {
     setTimeout(() => {removeHighlight(guess)}, 400)
 
     if (userResponse.length >= sequence.length) {
-        if (winTester(userResponse)) {
-            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 410)
-            setTimeout( function () {clearResponses()}, 410)
-            turn++
-            updateLevel()
-        } else {
-            setTimeout( function() {alert("Not quite. Guess again, press 'Ready' for a new sequence, or press 'Reset Game' to start over.")}, 200)
-            setTimeout( function() {clearResponses()}, 410)
+        if (turn != 1) {
+            if (winTester(userResponse)) {
+                setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 410)
+                setTimeout( function () {clearResponses()}, 410)
+                turn++
+                updateLevel()
+                addRandom()
+            } else {
+                setTimeout( function() {alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.")}, 200)
+                setTimeout( function() {clearResponses()}, 410)
+            }
+        }
+        else {
+            if (winTester(userResponse)) {
+                setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 410)
+                setTimeout( function () {clearResponses()}, 410)
+                turn++
+                updateLevel()
+                addRandom()
+            } else {
+                setTimeout( function() {alert("Not quite. Guess again, or press 'Ready' to start over.")}, 200)
+                setTimeout( function() {clearResponses()}, 410)
+            }
         }
     }
 }
@@ -134,6 +148,7 @@ const reset = function () {
     turn = 1
     updateLevel()
     sequence = []
+    speed = 800
 }
 
 let resetButton = document.querySelector('.reset-container button')
@@ -143,3 +158,12 @@ const updateLevel = function () {
     let levelDisplay = document.querySelector('span')
     levelDisplay.innerHTML = turn
 }
+
+//make button to speed up 
+const speedUp = function () {
+    speed = speed * .5
+    console.log(speed)
+}
+
+let speedButton = document.querySelector('.speed-container button')
+speedButton.addEventListener('click', speedUp)

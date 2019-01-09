@@ -111,7 +111,8 @@ var colors = ['green', 'red', 'yellow', 'blue'];
 var turn = 1;
 var sequence = [];
 var userResponse = [];
-var i = 0; //create random array of colors -------------------------------------------------------------
+var i = 0;
+var speed = 800; //create random array of colors -------------------------------------------------------------
 
 var randomizer = function randomizer() {
   for (var _i = 0; _i < turn + 2; _i++) {
@@ -162,20 +163,19 @@ var gameLoop = function gameLoop() {
     highlight(currentColor);
     setTimeout(function () {
       removeHighlight(currentColor);
-    }, 800);
+    }, speed);
     i++;
 
     if (i < sequence.length) {
       gameLoop();
     }
-  }, 1300);
+  }, speed + 250);
 };
 
 var playGame = function playGame() {
   if (turn === 1) {
+    sequence = [];
     randomizer();
-  } else {
-    addRandom();
   }
 
   console.log(sequence);
@@ -197,22 +197,44 @@ var clickHandler = function clickHandler(evt) {
   }, 400);
 
   if (userResponse.length >= sequence.length) {
-    if (winTester(userResponse)) {
-      setTimeout(function () {
-        alert("Correct! Press 'Ready' again to try the next level.");
-      }, 410);
-      setTimeout(function () {
-        clearResponses();
-      }, 410);
-      turn++;
-      updateLevel();
+    if (turn != 1) {
+      if (winTester(userResponse)) {
+        setTimeout(function () {
+          alert("Correct! Press 'Ready' again to try the next level.");
+        }, 410);
+        setTimeout(function () {
+          clearResponses();
+        }, 410);
+        turn++;
+        updateLevel();
+        addRandom();
+      } else {
+        setTimeout(function () {
+          alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.");
+        }, 200);
+        setTimeout(function () {
+          clearResponses();
+        }, 410);
+      }
     } else {
-      setTimeout(function () {
-        alert("Not quite. Guess again, press 'Ready' for a new sequence, or press 'Reset Game' to start over.");
-      }, 200);
-      setTimeout(function () {
-        clearResponses();
-      }, 410);
+      if (winTester(userResponse)) {
+        setTimeout(function () {
+          alert("Correct! Press 'Ready' again to try the next level.");
+        }, 410);
+        setTimeout(function () {
+          clearResponses();
+        }, 410);
+        turn++;
+        updateLevel();
+        addRandom();
+      } else {
+        setTimeout(function () {
+          alert("Not quite. Guess again, or press 'Ready' to start over.");
+        }, 200);
+        setTimeout(function () {
+          clearResponses();
+        }, 410);
+      }
     }
   }
 };
@@ -244,6 +266,7 @@ var reset = function reset() {
   turn = 1;
   updateLevel();
   sequence = [];
+  speed = 800;
 };
 
 var resetButton = document.querySelector('.reset-container button');
@@ -252,7 +275,16 @@ resetButton.addEventListener('click', reset);
 var updateLevel = function updateLevel() {
   var levelDisplay = document.querySelector('span');
   levelDisplay.innerHTML = turn;
+}; //make button to speed up 
+
+
+var speedUp = function speedUp() {
+  speed = speed * .5;
+  console.log(speed);
 };
+
+var speedButton = document.querySelector('.speed-container button');
+speedButton.addEventListener('click', speedUp);
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
