@@ -4,7 +4,7 @@ body {
   grid-template-columns: 1fr;
   grid-auto-rows: 30vh 45vh 17vh 8vh;
   color: white;
-  background-color: #cfcfcf;
+  background-color: #afafaf;
   font-family: "Roboto", sans-serif;
 }
 

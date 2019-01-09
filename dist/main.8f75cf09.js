@@ -180,22 +180,19 @@ var responsesContainer = document.querySelector('.responses-container');
 var clickHandler = function clickHandler(evt) {
   var guess = evt.target.id;
   userResponse.push(guess);
-  var p = document.createElement('P');
-  p.innerHTML = guess;
-  responsesContainer.appendChild(p);
   highlight(guess);
   setTimeout(function () {
     removeHighlight(guess);
-  }, 300);
+  }, 400);
 
   if (userResponse.length >= sequence.length) {
     if (winTester(userResponse)) {
       setTimeout(function () {
         alert("Correct! Press 'Ready' again to try the next level.");
-      }, 350);
+      }, 410);
       setTimeout(function () {
         clearResponses();
-      }, 350);
+      }, 410);
       turn++;
       updateLevel();
     } else {
@@ -204,7 +201,7 @@ var clickHandler = function clickHandler(evt) {
       }, 200);
       setTimeout(function () {
         clearResponses();
-      }, 350);
+      }, 410);
     }
   }
 };
@@ -227,11 +224,6 @@ var winTester = function winTester(userResponse) {
 };
 
 var clearResponses = function clearResponses() {
-  for (var _i6 = 0; _i6 < userResponse.length; _i6++) {
-    var p = document.querySelector('p');
-    responsesContainer.removeChild(p);
-  }
-
   userResponse = [];
 };
 

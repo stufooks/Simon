@@ -81,22 +81,18 @@ const clickHandler = function (evt) {
     let guess = evt.target.id
     userResponse.push(guess)
 
-    let p = document.createElement('P')
-    p.innerHTML = guess
-    responsesContainer.appendChild(p)
-
     highlight(guess)
-    setTimeout(() => {removeHighlight(guess)}, 300)
+    setTimeout(() => {removeHighlight(guess)}, 400)
 
     if (userResponse.length >= sequence.length) {
         if (winTester(userResponse)) {
-            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 350)
-            setTimeout( function () {clearResponses()}, 350)
+            setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 410)
+            setTimeout( function () {clearResponses()}, 410)
             turn++
             updateLevel()
         } else {
             setTimeout( function() {alert("Not quite. Guess again, press 'Ready' for a new sequence, or press 'Reset Game' to start over.")}, 200)
-            setTimeout( function() {clearResponses()}, 350)
+            setTimeout( function() {clearResponses()}, 410)
         }
     }
 }
@@ -117,10 +113,6 @@ const winTester = function (userResponse) {
 }
 
 const clearResponses = function () {
-    for (let i = 0; i < userResponse.length; i++) {
-        let p = document.querySelector('p')
-        responsesContainer.removeChild(p)
-    }
     userResponse = []
 }
 
