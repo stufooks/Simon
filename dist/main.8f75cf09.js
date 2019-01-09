@@ -172,8 +172,8 @@ var playGame = function playGame() {
   gameLoop();
 };
 
-var button = document.querySelector('button');
-button.addEventListener('click', playGame); //now get the user's response -------------------------------------------------------------
+var readyButton = document.querySelector('.ready-container button');
+readyButton.addEventListener('click', playGame); //now get the user's response -------------------------------------------------------------
 
 var responsesContainer = document.querySelector('.responses-container');
 
@@ -229,6 +229,15 @@ var clearResponses = function clearResponses() {
 
   userResponse = [];
 };
+
+var reset = function reset() {
+  console.log('hi');
+  clearResponses();
+  turn = 1;
+};
+
+var resetButton = document.querySelector('.reset-container button');
+resetButton.addEventListener('click', reset);
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -256,7 +265,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59916" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64938" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

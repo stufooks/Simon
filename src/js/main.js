@@ -69,8 +69,8 @@ const playGame = function () {
     gameLoop()
 }
 
-let button = document.querySelector('button')
-button.addEventListener('click', playGame)
+let readyButton = document.querySelector('.ready-container button')
+readyButton.addEventListener('click', playGame)
 
 
 
@@ -119,3 +119,12 @@ const clearResponses = function () {
     }
     userResponse = []
 }
+
+const reset = function () {
+    console.log('hi')
+    clearResponses()
+    turn = 1
+}
+
+let resetButton = document.querySelector('.reset-container button')
+resetButton.addEventListener('click', reset)
