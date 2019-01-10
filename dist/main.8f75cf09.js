@@ -112,7 +112,8 @@ var turn = 1;
 var sequence = [];
 var userResponse = [];
 var i = 0;
-var speed = 800; //create random array of colors -------------------------------------------------------------
+var speed = 800;
+var mode = 'standard'; //create random array of colors -------------------------------------------------------------
 
 var randomizer = function randomizer() {
   for (var _i = 0; _i < turn + 2; _i++) {
@@ -181,52 +182,51 @@ var clickHandler = function clickHandler(evt) {
     highlighter(guess);
   }, 400);
 
-  if (userResponse.length >= sequence.length) {
-    if (turn != 1) {
-      if (winTester(userResponse)) {
-        setTimeout(function () {
-          alert("Correct! Press 'Ready' again to try the next level.");
-        }, 410);
-        setTimeout(function () {
-          clearResponses();
-        }, 410);
-        turn++;
-        updateLevel();
-        addRandom();
-      } else {
-        setTimeout(function () {
-          alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.");
-        }, 410);
-        setTimeout(function () {
-          clearResponses();
-        }, 410);
-      }
+  if (userResponse.length >= sequence.length && mode === 'standard') {
+    if (winTester(userResponse)) {
+      winHandler();
     } else {
-      if (winTester(userResponse)) {
-        setTimeout(function () {
-          alert("Correct! Press 'Ready' again to try the next level.");
-        }, 410);
-        setTimeout(function () {
-          clearResponses();
-        }, 410);
-        turn++;
-        updateLevel();
-        addRandom();
-      } else {
-        setTimeout(function () {
-          alert("Not quite. Guess again, or press 'Ready' to start over.");
-        }, 410);
-        setTimeout(function () {
-          clearResponses();
-        }, 410);
-      }
+      lossHandler();
+    }
+  }
+
+  if (userResponse.length >= sequence.length && mode === 'reverse') {
+    if (reverseTester(userResponse)) {
+      winHandler();
+    } else {
+      lossHandler();
     }
   }
 };
 
 for (var _i3 = 0; _i3 < squares.length; _i3++) {
   squares[_i3].addEventListener('click', clickHandler);
-} //now compare user's response to the sequence -----------------------------------------------
+} //functions for handling a correct response or an incorrect response
+
+
+var winHandler = function winHandler() {
+  setTimeout(function () {
+    alert("Correct! Press 'Ready' again to try the next level.");
+  }, 410);
+  clearResponses();
+  turn++;
+  updateLevel();
+  addRandom();
+};
+
+var lossHandler = function lossHandler() {
+  if (turn != 1) {
+    setTimeout(function () {
+      alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.");
+    }, 410);
+    clearResponses();
+  } else {
+    setTimeout(function () {
+      alert("Not quite. Guess again, or press 'Ready' to start over.");
+    }, 410);
+    clearResponses();
+  }
+}; //now compare user's response to the sequence -----------------------------------------------
 
 
 var winTester = function winTester(userResponse) {
@@ -260,7 +260,7 @@ resetButton.addEventListener('click', reset);
 var updateLevel = function updateLevel() {
   var levelDisplay = document.querySelector('span');
   levelDisplay.innerHTML = turn;
-}; //make button to speed up the game 
+}; //make button to speed up the game ---------------------------------------------------------------------------
 
 
 var speedUp = function speedUp() {
@@ -269,7 +269,27 @@ var speedUp = function speedUp() {
 };
 
 var speedButton = document.querySelector('.speed-container button');
-speedButton.addEventListener('click', speedUp);
+speedButton.addEventListener('click', speedUp); //make button for reverse mode --------------------------------------------------------------------------------
+
+var reverseTester = function reverseTester(userResponse) {
+  var count = 0;
+
+  for (var _i5 = 0; _i5 < sequence.length; _i5++) {
+    if (userResponse[_i5] === sequence[sequence.length - (_i5 + 1)]) {
+      count++;
+    }
+  }
+
+  return count === sequence.length;
+};
+
+var reverseMode = function reverseMode() {
+  mode = 'reverse';
+  console.log('reverse mode');
+};
+
+var reverseButton = document.querySelector('.reverse-container button');
+reverseButton.addEventListener('click', reverseMode);
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
