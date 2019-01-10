@@ -152,14 +152,14 @@ var gameLoop = function gameLoop() {
     highlighter(currentColor);
     setTimeout(function () {
       highlighter(currentColor);
-    }, speed);
-    setTimeout(function () {
-      if (mode === 'Standard') {
-        instructions.innerHTML = 'Now click the sequence of colors in the same order';
-      } else {
-        instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order';
-      }
-    }, speed + speed * sequence.length + 300);
+    }, speed); // setTimeout( function () {
+    //     if (mode === 'Standard') {
+    //         instructions.innerHTML = 'Now click the sequence of colors in the same order'
+    //     } else {
+    //         instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order'
+    //     }
+    // }, speed + (speed * sequence.length) + 300)
+
     i++;
 
     if (i < sequence.length) {
@@ -179,6 +179,13 @@ var playGame = function playGame() {
   console.log(sequence);
   i = 0;
   gameLoop();
+  setTimeout(function () {
+    if (mode === 'Standard') {
+      instructions.innerHTML = 'Now click the sequence of colors in the same order';
+    } else {
+      instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order';
+    }
+  }, speed + speed * sequence.length + 300);
 };
 
 var readyButton = document.querySelector('.ready-container button');
@@ -190,7 +197,7 @@ var clickHandler = function clickHandler(evt) {
   highlighter(guess);
   setTimeout(function () {
     highlighter(guess);
-  }, 400);
+  }, 150);
 
   if (userResponse.length >= sequence.length && mode === 'Standard') {
     if (winTester(userResponse)) {
@@ -211,7 +218,7 @@ var clickHandler = function clickHandler(evt) {
 
 for (var _i3 = 0; _i3 < squares.length; _i3++) {
   squares[_i3].addEventListener('click', clickHandler);
-} //functions for handling a correct response or an incorrect response
+} //functions for handling a correct response or an incorrect response -------------------------------------------
 
 
 var winHandler = function winHandler() {
@@ -236,7 +243,7 @@ var lossHandler = function lossHandler() {
     }, 410);
     clearResponses();
   }
-}; //now compare user's response to the sequence -----------------------------------------------
+}; //now compare user's response to the sequence ----------------------------------------------------------
 
 
 var winTester = function winTester(userResponse) {

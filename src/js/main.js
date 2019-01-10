@@ -53,13 +53,13 @@ const gameLoop = function () {
         setTimeout( function () {
             highlighter(currentColor)
         }, speed)
-        setTimeout( function () {
-            if (mode === 'Standard') {
-                instructions.innerHTML = 'Now click the sequence of colors in the same order'
-            } else {
-                instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order'
-            }
-        }, speed + (speed * sequence.length) + 300)
+        // setTimeout( function () {
+        //     if (mode === 'Standard') {
+        //         instructions.innerHTML = 'Now click the sequence of colors in the same order'
+        //     } else {
+        //         instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order'
+        //     }
+        // }, speed + (speed * sequence.length) + 300)
         i++
         if (i < sequence.length) {
             gameLoop()
@@ -76,6 +76,13 @@ const playGame = () => {
     console.log(sequence)
     i = 0
     gameLoop()
+    setTimeout( function () {
+        if (mode === 'Standard') {
+            instructions.innerHTML = 'Now click the sequence of colors in the same order'
+        } else {
+            instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order'
+        }
+    }, speed + (speed * sequence.length) + 300)
 }
 
 let readyButton = document.querySelector('.ready-container button')
@@ -90,7 +97,7 @@ const clickHandler = function (evt) {
     userResponse.push(guess)
 
     highlighter(guess)
-    setTimeout(() => {highlighter(guess)}, 400)
+    setTimeout(() => {highlighter(guess)}, 150)
 
     if (userResponse.length >= sequence.length && mode === 'Standard') {
         if (winTester(userResponse)) {
@@ -112,7 +119,7 @@ for (let i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', clickHandler)
 }
 
-//functions for handling a correct response or an incorrect response
+//functions for handling a correct response or an incorrect response -------------------------------------------
 
 const winHandler = function () {
     setTimeout( function () {instructions.innerHTML = "Correct! Press 'Ready' again to try the next level."}, 410)
@@ -126,14 +133,13 @@ const lossHandler = function () {
     if (turn != 1) {
         setTimeout( function() {instructions.innerHTML = "Not quite! Guess again, press 'Ready' to replay, or press 'Reset Game' to start over."}, 410)
         clearResponses()
-    }
-    else {
+    } else {
         setTimeout( function() {instructions.innerHTML = "Not quite! Guess again, or press 'Ready' to start over."}, 410)
         clearResponses()
     }
 }
 
-//now compare user's response to the sequence -----------------------------------------------
+//now compare user's response to the sequence ----------------------------------------------------------
 const winTester = function (userResponse) {
     let count = 0
     for (let i = 0; i < sequence.length; i++) {
