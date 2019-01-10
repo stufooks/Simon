@@ -113,7 +113,7 @@ var sequence = [];
 var userResponse = [];
 var i = 0;
 var speed = 800;
-var mode = 'standard'; //create random array of colors -------------------------------------------------------------
+var mode = 'Standard'; //create random array of colors -------------------------------------------------------------
 
 var randomizer = function randomizer() {
   for (var _i = 0; _i < turn + 2; _i++) {
@@ -182,7 +182,7 @@ var clickHandler = function clickHandler(evt) {
     highlighter(guess);
   }, 400);
 
-  if (userResponse.length >= sequence.length && mode === 'standard') {
+  if (userResponse.length >= sequence.length && mode === 'Standard') {
     if (winTester(userResponse)) {
       winHandler();
     } else {
@@ -190,7 +190,7 @@ var clickHandler = function clickHandler(evt) {
     }
   }
 
-  if (userResponse.length >= sequence.length && mode === 'reverse') {
+  if (userResponse.length >= sequence.length && mode === 'Reverse') {
     if (reverseTester(userResponse)) {
       winHandler();
     } else {
@@ -252,13 +252,15 @@ var reset = function reset() {
   updateLevel();
   sequence = [];
   speed = 800;
+  mode = 'Standard';
+  updateMode();
 };
 
 var resetButton = document.querySelector('.reset-container button');
 resetButton.addEventListener('click', reset);
 
 var updateLevel = function updateLevel() {
-  var levelDisplay = document.querySelector('span');
+  var levelDisplay = document.querySelector('.level');
   levelDisplay.innerHTML = turn;
 }; //make button to speed up the game ---------------------------------------------------------------------------
 
@@ -284,12 +286,19 @@ var reverseTester = function reverseTester(userResponse) {
 };
 
 var reverseMode = function reverseMode() {
-  mode = 'reverse';
-  console.log('reverse mode');
+  mode = 'Reverse';
+  updateMode();
+  console.log('Reverse mode');
+  alert('You are now in Reverse Mode. Click the sequence of colors in the reverse order.');
 };
 
 var reverseButton = document.querySelector('.reverse-container button');
 reverseButton.addEventListener('click', reverseMode);
+
+var updateMode = function updateMode() {
+  var modeDisplay = document.querySelector('.mode');
+  modeDisplay.innerHTML = " ".concat(mode);
+};
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

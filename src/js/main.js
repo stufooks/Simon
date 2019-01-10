@@ -11,7 +11,7 @@ let sequence = []
 let userResponse = []
 let i = 0
 let speed = 800
-let mode = 'standard'
+let mode = 'Standard'
 
 //create random array of colors -------------------------------------------------------------
 
@@ -83,14 +83,14 @@ const clickHandler = function (evt) {
     highlighter(guess)
     setTimeout(() => {highlighter(guess)}, 400)
 
-    if (userResponse.length >= sequence.length && mode === 'standard') {
+    if (userResponse.length >= sequence.length && mode === 'Standard') {
         if (winTester(userResponse)) {
             winHandler()
         } else {
             lossHandler()
         }
     }
-    if (userResponse.length >= sequence.length && mode === 'reverse') {
+    if (userResponse.length >= sequence.length && mode === 'Reverse') {
         if (reverseTester(userResponse)) {
             winHandler()
         } else {
@@ -147,13 +147,15 @@ const reset = function () {
     updateLevel()
     sequence = []
     speed = 800
+    mode = 'Standard'
+    updateMode()
 }
 
 let resetButton = document.querySelector('.reset-container button')
 resetButton.addEventListener('click', reset)
 
 const updateLevel = function () {
-    let levelDisplay = document.querySelector('span')
+    let levelDisplay = document.querySelector('.level')
     levelDisplay.innerHTML = turn
 }
 
@@ -180,9 +182,16 @@ const reverseTester = function (userResponse) {
 }
 
 const reverseMode = function () {
-    mode = 'reverse'
-    console.log('reverse mode')
+    mode = 'Reverse'
+    updateMode()
+    console.log('Reverse mode')
+    alert('You are now in Reverse Mode. Click the sequence of colors in the reverse order.')
 }
 
 let reverseButton = document.querySelector('.reverse-container button')
 reverseButton.addEventListener('click', reverseMode)
+
+const updateMode = function () {
+    let modeDisplay = document.querySelector('.mode')
+    modeDisplay.innerHTML = ` ${mode}`
+}
