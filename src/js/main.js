@@ -1,6 +1,7 @@
 //set up constants
-const squares = document.querySelectorAll('.squares-container .game-square')
-const colors = [
+let squares = document.querySelectorAll('.squares-container .game-square')
+let instructions = document.querySelector('h4')
+let colors = [
     'green',
     'red',
     'yellow',
@@ -24,7 +25,7 @@ const randomizer = function () {
     }
 }
 
-// function to add a random color to the sequence after each turn
+// function to add a random color to the sequence ------------------------------------------------
 
 const addRandom = function () {
     let random = Math.random()
@@ -52,6 +53,13 @@ const gameLoop = function () {
         setTimeout( function () {
             highlighter(currentColor)
         }, speed)
+        setTimeout( function () {
+            if (mode === 'Standard') {
+                instructions.innerHTML = 'Now click the sequence of colors in the same order'
+            } else {
+                instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order'
+            }
+        }, speed + (speed * sequence.length) + 300)
         i++
         if (i < sequence.length) {
             gameLoop()
@@ -60,6 +68,7 @@ const gameLoop = function () {
 }
 
 const playGame = () => {
+    instructions.innerHTML = 'Watch the sequence of colors...'
     if (turn === 1) {
         sequence = []
         randomizer()
@@ -106,7 +115,7 @@ for (let i = 0; i < squares.length; i++) {
 //functions for handling a correct response or an incorrect response
 
 const winHandler = function () {
-    setTimeout( function () {alert("Correct! Press 'Ready' again to try the next level.")}, 410)
+    setTimeout( function () {instructions.innerHTML = "Correct! Press 'Ready' again to try the next level."}, 410)
     clearResponses()
     turn++
     updateLevel()
@@ -115,11 +124,11 @@ const winHandler = function () {
 
 const lossHandler = function () {
     if (turn != 1) {
-        setTimeout( function() {alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.")}, 410)
+        setTimeout( function() {instructions.innerHTML = "Not quite! Guess again, press 'Ready' to replay, or press 'Reset Game' to start over."}, 410)
         clearResponses()
     }
     else {
-        setTimeout( function() {alert("Not quite. Guess again, or press 'Ready' to start over.")}, 410)
+        setTimeout( function() {instructions.innerHTML = "Not quite! Guess again, or press 'Ready' to start over."}, 410)
         clearResponses()
     }
 }
@@ -149,6 +158,7 @@ const reset = function () {
     speed = 800
     mode = 'Standard'
     updateMode()
+    instructions.innerHTML = "Press 'Ready' to begin"
 }
 
 let resetButton = document.querySelector('.reset-container button')
@@ -185,7 +195,7 @@ const reverseMode = function () {
     mode = 'Reverse'
     updateMode()
     console.log('Reverse mode')
-    alert('You are now in Reverse Mode. Click the sequence of colors in the reverse order.')
+    instructions.innerHTML = 'You are now in Reverse Mode'
 }
 
 let reverseButton = document.querySelector('.reverse-container button')

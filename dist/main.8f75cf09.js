@@ -107,6 +107,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"../js/main.js":[function(require,module,exports) {
 //set up constants
 var squares = document.querySelectorAll('.squares-container .game-square');
+var instructions = document.querySelector('h4');
 var colors = ['green', 'red', 'yellow', 'blue'];
 var turn = 1;
 var sequence = [];
@@ -122,7 +123,7 @@ var randomizer = function randomizer() {
     var index = Math.floor(length * random);
     sequence.push(colors[index]);
   }
-}; // function to add a random color to the sequence after each turn
+}; // function to add a random color to the sequence ------------------------------------------------
 
 
 var addRandom = function addRandom() {
@@ -152,6 +153,13 @@ var gameLoop = function gameLoop() {
     setTimeout(function () {
       highlighter(currentColor);
     }, speed);
+    setTimeout(function () {
+      if (mode === 'Standard') {
+        instructions.innerHTML = 'Now click the sequence of colors in the same order';
+      } else {
+        instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order';
+      }
+    }, speed + speed * sequence.length + 300);
     i++;
 
     if (i < sequence.length) {
@@ -161,6 +169,8 @@ var gameLoop = function gameLoop() {
 };
 
 var playGame = function playGame() {
+  instructions.innerHTML = 'Watch the sequence of colors...';
+
   if (turn === 1) {
     sequence = [];
     randomizer();
@@ -206,7 +216,7 @@ for (var _i3 = 0; _i3 < squares.length; _i3++) {
 
 var winHandler = function winHandler() {
   setTimeout(function () {
-    alert("Correct! Press 'Ready' again to try the next level.");
+    instructions.innerHTML = "Correct! Press 'Ready' again to try the next level.";
   }, 410);
   clearResponses();
   turn++;
@@ -217,12 +227,12 @@ var winHandler = function winHandler() {
 var lossHandler = function lossHandler() {
   if (turn != 1) {
     setTimeout(function () {
-      alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.");
+      instructions.innerHTML = "Not quite! Guess again, press 'Ready' to replay, or press 'Reset Game' to start over.";
     }, 410);
     clearResponses();
   } else {
     setTimeout(function () {
-      alert("Not quite. Guess again, or press 'Ready' to start over.");
+      instructions.innerHTML = "Not quite! Guess again, or press 'Ready' to start over.";
     }, 410);
     clearResponses();
   }
@@ -254,6 +264,7 @@ var reset = function reset() {
   speed = 800;
   mode = 'Standard';
   updateMode();
+  instructions.innerHTML = "Press 'Ready' to begin";
 };
 
 var resetButton = document.querySelector('.reset-container button');
@@ -289,7 +300,7 @@ var reverseMode = function reverseMode() {
   mode = 'Reverse';
   updateMode();
   console.log('Reverse mode');
-  alert('You are now in Reverse Mode. Click the sequence of colors in the reverse order.');
+  instructions.innerHTML = 'You are now in Reverse Mode';
 };
 
 var reverseButton = document.querySelector('.reverse-container button');
