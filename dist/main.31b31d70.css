@@ -33,19 +33,25 @@ main .buttons-container {
   align-items: flex-end;
 }
 main .squares-container {
-  width: 280px;
-  margin: 0 60px 0 60px;
+  width: 250px;
+  height: 250px;
+  margin: 8vh;
+  padding: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  border: 10px solid black;
+  border-radius: 50%;
+  background-color: #323232;
 }
 main .squares-container .game-square {
-  margin: 0.2em;
+  margin: -1em 0.5em;
   height: 14vh;
   width: 14vh;
   border: 3px solid white;
   border-radius: 50%;
+  opacity: 0.4;
 }
 main .levels-container {
   width: 280px;
@@ -59,22 +65,18 @@ button {
 
 #green {
   background-color: green;
-  opacity: 0.3;
 }
 
 #red {
   background-color: red;
-  opacity: 0.3;
 }
 
 #yellow {
   background-color: yellow;
-  opacity: 0.3;
 }
 
 #blue {
   background-color: blue;
-  opacity: 0.3;
 }
 
 .highlighted {
