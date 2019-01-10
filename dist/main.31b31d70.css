@@ -33,8 +33,8 @@ main .buttons-container {
   align-items: flex-end;
 }
 main .squares-container {
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   margin: 8vh;
   padding: 5vh;
   display: flex;

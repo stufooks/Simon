@@ -152,14 +152,14 @@ var gameLoop = function gameLoop() {
     highlighter(currentColor);
     setTimeout(function () {
       highlighter(currentColor);
-    }, speed); // setTimeout( function () {
-    //     if (mode === 'Standard') {
-    //         instructions.innerHTML = 'Now click the sequence of colors in the same order'
-    //     } else {
-    //         instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order'
-    //     }
-    // }, speed + (speed * sequence.length) + 300)
-
+    }, speed);
+    setTimeout(function () {
+      if (mode === 'Standard') {
+        instructions.innerHTML = 'Now click the sequence of colors in the same order';
+      } else {
+        instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order';
+      }
+    }, speed + speed * sequence.length + 100);
     i++;
 
     if (i < sequence.length) {
@@ -169,6 +169,7 @@ var gameLoop = function gameLoop() {
 };
 
 var playGame = function playGame() {
+  userResponse = [];
   instructions.innerHTML = 'Watch the sequence of colors...';
 
   if (turn === 1) {
@@ -179,13 +180,6 @@ var playGame = function playGame() {
   console.log(sequence);
   i = 0;
   gameLoop();
-  setTimeout(function () {
-    if (mode === 'Standard') {
-      instructions.innerHTML = 'Now click the sequence of colors in the same order';
-    } else {
-      instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order';
-    }
-  }, speed + speed * sequence.length + 300);
 };
 
 var readyButton = document.querySelector('.ready-container button');
@@ -344,7 +338,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64691" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65466" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
