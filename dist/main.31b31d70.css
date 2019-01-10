@@ -2,7 +2,7 @@ body {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: 20vh 70vh 10vh;
+  grid-auto-rows: 18vh 72vh 10vh;
   color: white;
   background-image: url("connectwork.a3a6d110.png");
   font-family: "Righteous", cursive;
