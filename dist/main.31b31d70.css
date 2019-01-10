@@ -2,7 +2,7 @@ body {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: 30vh 45vh 17vh 8vh;
+  grid-auto-rows: 30vh 60vh 10vh;
   color: white;
   background-color: #afafaf;
   font-family: "Roboto", sans-serif;
@@ -40,6 +40,13 @@ main .squares-container {
   align-items: center;
   flex-wrap: wrap;
 }
+main .squares-container .game-square {
+  margin: 0.2em;
+  height: 14vh;
+  width: 14vh;
+  border: 3px solid white;
+  border-radius: 50%;
+}
 main .levels-container {
   width: 280px;
 }
@@ -48,14 +55,6 @@ button {
   font-size: 1.1em;
   font-family: "Righteous", cursive;
   margin: 3vh 0;
-}
-
-.game-square {
-  margin: 0.2em;
-  height: 14vh;
-  width: 14vh;
-  border: 3px solid white;
-  border-radius: 50%;
 }
 
 #green {
@@ -79,32 +78,11 @@ button {
 }
 
 .highlighted {
-  border: 5px solid gold;
-}
-
-.responses-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.responses-container p {
-  margin: 2vh;
-}
-
-section {
-  grid-row: 3;
-}
-section .responses-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-section .responses-container p {
-  margin: 2vh;
+  opacity: 1 !important;
 }
 
 footer {
-  grid-row: 4;
+  grid-row: 3;
   display: flex;
   justify-content: flex-end;
   align-items: center;

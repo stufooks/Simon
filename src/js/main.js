@@ -32,35 +32,24 @@ const addRandom = function () {
     sequence.push(colors[index])
 }
 
-// change borders of game squares in order of the sequence ------------------------------------
-const highlight = function(color) {
+// toggle highlighted square in order of the sequence ------------------------------------------
+const highlighter = function(color) {
     let currentSquare = squares[0]
     for (let i = 0; i < squares.length; i++) {
         if (squares[i].id === color) {
             currentSquare = squares[i]
         }
     }
-    currentSquare.style.opacity = 1
+    currentSquare.classList.toggle('highlighted')
 
-}
-
-const removeHighlight = function(color) {
-    let currentSquare = squares[0]
-    for (let i = 0; i < squares.length; i++) {
-        if (squares[i].id === color) {
-            currentSquare = squares[i]
-        }
-    }
-    currentSquare.style.opacity = .3
 }
 
 const gameLoop = function () {
     setTimeout( function () {
         let currentColor = sequence[i]
-        console.log(currentColor)
-        highlight(currentColor)
+        highlighter(currentColor)
         setTimeout( function () {
-            removeHighlight(currentColor)
+            highlighter(currentColor)
         }, speed)
         i++
         if (i < sequence.length) {
@@ -69,7 +58,7 @@ const gameLoop = function () {
    }, (speed + 250))
 }
 
-const playGame = function () {
+const playGame = () => {
     if (turn === 1) {
         sequence = []
         randomizer()
@@ -85,14 +74,13 @@ readyButton.addEventListener('click', playGame)
 
 
 //now get the user's response -------------------------------------------------------------
-let responsesContainer = document.querySelector('.responses-container')
 
 const clickHandler = function (evt) {
     let guess = evt.target.id
     userResponse.push(guess)
 
-    highlight(guess)
-    setTimeout(() => {removeHighlight(guess)}, 400)
+    highlighter(guess)
+    setTimeout(() => {highlighter(guess)}, 400)
 
     if (userResponse.length >= sequence.length) {
         if (turn != 1) {
@@ -103,7 +91,7 @@ const clickHandler = function (evt) {
                 updateLevel()
                 addRandom()
             } else {
-                setTimeout( function() {alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.")}, 200)
+                setTimeout( function() {alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.")}, 410)
                 setTimeout( function() {clearResponses()}, 410)
             }
         }
@@ -115,7 +103,7 @@ const clickHandler = function (evt) {
                 updateLevel()
                 addRandom()
             } else {
-                setTimeout( function() {alert("Not quite. Guess again, or press 'Ready' to start over.")}, 200)
+                setTimeout( function() {alert("Not quite. Guess again, or press 'Ready' to start over.")}, 410)
                 setTimeout( function() {clearResponses()}, 410)
             }
         }
@@ -159,7 +147,7 @@ const updateLevel = function () {
     levelDisplay.innerHTML = turn
 }
 
-//make button to speed up 
+//make button to speed up the game 
 const speedUp = function () {
     speed = speed * .5
     console.log(speed)

@@ -129,10 +129,10 @@ var addRandom = function addRandom() {
   var length = colors.length;
   var index = Math.floor(length * random);
   sequence.push(colors[index]);
-}; // change borders of game squares in order of the sequence ------------------------------------
+}; // toggle highlighted square in order of the sequence ------------------------------------------
 
 
-var highlight = function highlight(color) {
+var highlighter = function highlighter(color) {
   var currentSquare = squares[0];
 
   for (var _i2 = 0; _i2 < squares.length; _i2++) {
@@ -141,28 +141,15 @@ var highlight = function highlight(color) {
     }
   }
 
-  currentSquare.style.opacity = 1;
-};
-
-var removeHighlight = function removeHighlight(color) {
-  var currentSquare = squares[0];
-
-  for (var _i3 = 0; _i3 < squares.length; _i3++) {
-    if (squares[_i3].id === color) {
-      currentSquare = squares[_i3];
-    }
-  }
-
-  currentSquare.style.opacity = .3;
+  currentSquare.classList.toggle('highlighted');
 };
 
 var gameLoop = function gameLoop() {
   setTimeout(function () {
     var currentColor = sequence[i];
-    console.log(currentColor);
-    highlight(currentColor);
+    highlighter(currentColor);
     setTimeout(function () {
-      removeHighlight(currentColor);
+      highlighter(currentColor);
     }, speed);
     i++;
 
@@ -186,14 +173,12 @@ var playGame = function playGame() {
 var readyButton = document.querySelector('.ready-container button');
 readyButton.addEventListener('click', playGame); //now get the user's response -------------------------------------------------------------
 
-var responsesContainer = document.querySelector('.responses-container');
-
 var clickHandler = function clickHandler(evt) {
   var guess = evt.target.id;
   userResponse.push(guess);
-  highlight(guess);
+  highlighter(guess);
   setTimeout(function () {
-    removeHighlight(guess);
+    highlighter(guess);
   }, 400);
 
   if (userResponse.length >= sequence.length) {
@@ -211,7 +196,7 @@ var clickHandler = function clickHandler(evt) {
       } else {
         setTimeout(function () {
           alert("Not quite. Guess again, press 'Ready' to replay the sequence, or press 'Reset Game' to start over.");
-        }, 200);
+        }, 410);
         setTimeout(function () {
           clearResponses();
         }, 410);
@@ -230,7 +215,7 @@ var clickHandler = function clickHandler(evt) {
       } else {
         setTimeout(function () {
           alert("Not quite. Guess again, or press 'Ready' to start over.");
-        }, 200);
+        }, 410);
         setTimeout(function () {
           clearResponses();
         }, 410);
@@ -239,16 +224,16 @@ var clickHandler = function clickHandler(evt) {
   }
 };
 
-for (var _i4 = 0; _i4 < squares.length; _i4++) {
-  squares[_i4].addEventListener('click', clickHandler);
+for (var _i3 = 0; _i3 < squares.length; _i3++) {
+  squares[_i3].addEventListener('click', clickHandler);
 } //now compare user's response to the sequence -----------------------------------------------
 
 
 var winTester = function winTester(userResponse) {
   var count = 0;
 
-  for (var _i5 = 0; _i5 < sequence.length; _i5++) {
-    if (userResponse[_i5] === sequence[_i5]) {
+  for (var _i4 = 0; _i4 < sequence.length; _i4++) {
+    if (userResponse[_i4] === sequence[_i4]) {
       count++;
     }
   }
@@ -275,7 +260,7 @@ resetButton.addEventListener('click', reset);
 var updateLevel = function updateLevel() {
   var levelDisplay = document.querySelector('span');
   levelDisplay.innerHTML = turn;
-}; //make button to speed up 
+}; //make button to speed up the game 
 
 
 var speedUp = function speedUp() {
@@ -312,7 +297,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64691" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
