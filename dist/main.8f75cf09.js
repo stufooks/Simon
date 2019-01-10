@@ -114,7 +114,8 @@ var i = 0;
 var speed = 800;
 var mode = 'Standard';
 var squares = document.querySelectorAll('.squares-container .game-square');
-var instructions = document.querySelector('h4'); //function to create random array of colors -----------------------------------------------------------
+var instructions = document.querySelector('h4');
+var middleRow = document.querySelector('.middle'); //function to create random array of colors -----------------------------------------------------------
 
 var randomizer = function randomizer() {
   for (var _i = 0; _i < turn + 2; _i++) {
@@ -266,6 +267,12 @@ var reset = function reset() {
   mode = 'Standard';
   updateMode();
   instructions.innerHTML = "Press 'Ready' to begin";
+
+  if (colors.length > 4) {
+    colors.pop();
+    var purple = document.getElementById('purple');
+    purple.parentNode.removeChild(purple);
+  }
 };
 
 var resetButton = document.querySelector('.reset-container button');
@@ -310,7 +317,25 @@ reverseButton.addEventListener('click', reverseMode);
 var updateMode = function updateMode() {
   var modeDisplay = document.querySelector('.mode');
   modeDisplay.innerHTML = " ".concat(mode);
+}; //function to add color
+
+
+var addColor = function addColor() {
+  if (colors.length === 4) {
+    colors.push('purple');
+    var div = document.createElement("DIV");
+    div.classList.add('game-square');
+    div.id = 'purple';
+    middleRow.appendChild(div);
+    squares = document.querySelectorAll('.squares-container .game-square');
+    squares[3].addEventListener('click', clickHandler);
+  } else {
+    alert('Too many colors!');
+  }
 };
+
+var addButton = document.querySelector('.add-container button');
+addButton.addEventListener('click', addColor);
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

@@ -95,6 +95,10 @@ button {
   background-color: blue;
 }
 
+#purple {
+  background-color: purple;
+}
+
 .highlighted {
   opacity: 1 !important;
 }

@@ -13,6 +13,7 @@ let speed = 800
 let mode = 'Standard'
 let squares = document.querySelectorAll('.squares-container .game-square')
 let instructions = document.querySelector('h4')
+let middleRow = document.querySelector('.middle')
 
 //function to create random array of colors -----------------------------------------------------------
 
@@ -159,6 +160,12 @@ const reset = function () {
     mode = 'Standard'
     updateMode()
     instructions.innerHTML = "Press 'Ready' to begin"
+    if (colors.length > 4) {
+        colors.pop()
+        let purple = document.getElementById('purple')
+        purple.parentNode.removeChild(purple)
+
+    }
 }
 
 let resetButton = document.querySelector('.reset-container button')
@@ -205,3 +212,23 @@ const updateMode = () => {
     let modeDisplay = document.querySelector('.mode')
     modeDisplay.innerHTML = ` ${mode}`
 }
+
+
+//function to add color
+
+const addColor = function () {
+    if (colors.length === 4) {
+        colors.push('purple')
+        let div = document.createElement("DIV")
+        div.classList.add('game-square')
+        div.id = 'purple'
+        middleRow.appendChild(div)
+        squares = document.querySelectorAll('.squares-container .game-square')
+        squares[3].addEventListener('click', clickHandler)
+    } else {
+        alert('Too many colors!')
+    }
+}
+
+let addButton = document.querySelector('.add-container button')
+addButton.addEventListener('click', addColor)
