@@ -105,16 +105,16 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"../js/main.js":[function(require,module,exports) {
-//set up constants
-var squares = document.querySelectorAll('.squares-container .game-square');
-var instructions = document.querySelector('h4');
+//set up variables
 var colors = ['green', 'red', 'yellow', 'blue'];
 var turn = 1;
 var sequence = [];
 var userResponse = [];
 var i = 0;
 var speed = 800;
-var mode = 'Standard'; //create random array of colors -------------------------------------------------------------
+var mode = 'Standard';
+var squares = document.querySelectorAll('.squares-container .game-square');
+var instructions = document.querySelector('h4'); //function to create random array of colors -----------------------------------------------------------
 
 var randomizer = function randomizer() {
   for (var _i = 0; _i < turn + 2; _i++) {
@@ -338,7 +338,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65466" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56366" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

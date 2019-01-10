@@ -3,7 +3,7 @@
   <head>
     <link href="https://fonts.googleapis.com/css?family=Righteous|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="/main.31b31d70.css">
- </head>
+  <script src="/main.31b31d70.js"></script></head>
   <body>
     <header>
       <h1>Simon</h1>
@@ -23,12 +23,21 @@
         <div class="reverse-container">
           <button>REVERSE MODE</button>
         </div>
+        <div class="add-container">
+          <button>ADD COLOR</button>
+        </div>
       </div>
       <div class="squares-container">
-        <div class="game-square" id="green"></div>
-        <div class="game-square" id="red"></div>
-        <div class="game-square" id="yellow"></div>
-        <div class="game-square" id="blue"></div>
+        <div class="square-row top">
+          <div class="game-square" id="green"></div>
+        </div>
+        <div class="square-row middle">
+          <div class="game-square" id="red"></div>
+          <div class="game-square" id="yellow"></div>
+        </div>
+        <div class="square-row bottom">
+          <div class="game-square" id="blue"></div>
+        </div>
       </div>
       <div class="levels-container">
         <h2>Level: <span class="level">1</span></h2>
@@ -41,7 +50,6 @@
         <p>Stuart Fooks</p>
       </div>
     </footer>
-    <script src="/main.31b31d70.js"></script>
     <script src="/main.8f75cf09.js"></script>
   </body>
 </html>

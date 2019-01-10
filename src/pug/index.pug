@@ -17,11 +17,16 @@ html(lang="en")
                     button SPEED UP
                 .reverse-container
                     button REVERSE MODE
+                .add-container
+                    button ADD COLOR
             .squares-container
-                .game-square(id="green")
-                .game-square(id="red")
-                .game-square(id="yellow")
-                .game-square(id="blue")
+                .square-row.top
+                    .game-square(id="green")
+                .square-row.middle
+                    .game-square(id="red")
+                    .game-square(id="yellow")
+                .square-row.bottom
+                    .game-square(id="blue")
             .levels-container
                 h2 Level: 
                     span.level 1

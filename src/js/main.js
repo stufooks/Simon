@@ -1,6 +1,4 @@
-//set up constants
-let squares = document.querySelectorAll('.squares-container .game-square')
-let instructions = document.querySelector('h4')
+//set up variables
 let colors = [
     'green',
     'red',
@@ -13,8 +11,10 @@ let userResponse = []
 let i = 0
 let speed = 800
 let mode = 'Standard'
+let squares = document.querySelectorAll('.squares-container .game-square')
+let instructions = document.querySelector('h4')
 
-//create random array of colors -------------------------------------------------------------
+//function to create random array of colors -----------------------------------------------------------
 
 const randomizer = function () {
     for (let i = 0; i < (turn + 2); i++) {

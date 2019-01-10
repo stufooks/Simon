@@ -1,7 +1,7 @@
 # Simon
 
 ## Description
-I created this app as my first project for General Assembly. The app is meant to mimic the game the game 'Simon'. When the user presses 'Ready', the gameboard illuminates 3 lights in a random order. The user then clicks the lights in the same order. If the user clicks the lights in the correct order, they move on to the next level.
+I created this app as my first project for General Assembly. The app is meant to mimic the game the game 'Simon'. When the user presses 'Ready', the gameboard illuminates 3 lights in a random order. The user then clicks the lights in the same order. If the user clicks the lights in the correct order, they move on to the next level. The next level lights up the same 3 lights, and adds an additional 4th light and so on.
 
 ## Features
 In addition to the basic game funtionality, I included:
