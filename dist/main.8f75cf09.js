@@ -317,7 +317,7 @@ reverseButton.addEventListener('click', reverseMode);
 var updateMode = function updateMode() {
   var modeDisplay = document.querySelector('.mode');
   modeDisplay.innerHTML = " ".concat(mode);
-}; //function to add color
+}; //function to add color --------------------------------------------------------------------------------------
 
 
 var addColor = function addColor() {
@@ -363,11 +363,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-<<<<<<< HEAD
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52106" + '/');
-=======
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56366" + '/');
->>>>>>> gh-pages
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52884" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
