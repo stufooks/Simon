@@ -286,7 +286,6 @@ var updateLevel = function updateLevel() {
 
 var speedUp = function speedUp() {
   speed = speed * .5;
-  console.log(speed);
 };
 
 var speedButton = document.querySelector('.speed-container button');
@@ -363,7 +362,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52884" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53543" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

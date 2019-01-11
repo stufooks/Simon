@@ -16,7 +16,6 @@ let instructions = document.querySelector('h4')
 let middleRow = document.querySelector('.middle')
 
 //function to create random array of colors -----------------------------------------------------------
-
 const randomizer = () => {
     for (let i = 0; i < (turn + 2); i++) {
         let random = Math.random()
@@ -27,7 +26,6 @@ const randomizer = () => {
 }
 
 // function to add a random color to the sequence ------------------------------------------------
-
 const addRandom = () => {
     let random = Math.random()
     let length = colors.length
