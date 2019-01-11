@@ -64,10 +64,11 @@ main .levels-container {
 }
 
 button {
-  font-size: 1.1em;
+  font-size: 1.2em;
   margin: 3vh 0;
   border: 2px solid black;
   font-family: "Righteous", cursive;
+  background-color: white;
 }
 
 #green {

@@ -24,4 +24,4 @@ My goal was to first make the basic game features work. I did that by first writ
     -Github Pages
 
 ## Unsolved Problems
-The biggest issue I can see with my app is when the user tries to click through their answer too fast. If they click quickly through their response, the sequence of clicks does not seem to be captured and the game does not advance.
+The biggest issue I can see with my app is when the user tries to click through their answer too fast. If they click quickly through their response, the sequence of clicks does not seem to be captured and the game does not advance. Pressing 'Reset' also sometimes displays the incorrect innerHTML in the instructions container.
