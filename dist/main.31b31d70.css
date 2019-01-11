@@ -106,9 +106,9 @@ footer {
 }
 
 button:hover {
-  font-size: 1.2em;
+  font-size: 1.3em !important;
 }
 
 .game-square:hover {
-  opacity: 1 !important;
+  opacity: 1;
 }
