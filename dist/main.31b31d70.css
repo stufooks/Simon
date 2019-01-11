@@ -53,23 +53,14 @@ main .squares-container .square-row {
 }
 main .squares-container .square-row .game-square {
   margin: 0.5em;
-  height: 14vh;
-  width: 14vh;
+  height: 16vh;
+  width: 16vh;
   border: 3px solid white;
   border-radius: 50%;
   opacity: 0.4;
 }
 main .levels-container {
   width: 280px;
-}
-
-.game-square {
-  margin: -1em 0.5em;
-  height: 14vh;
-  width: 14vh;
-  border: 3px solid white;
-  border-radius: 50%;
-  opacity: 0.4;
 }
 
 button {
