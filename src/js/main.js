@@ -17,7 +17,7 @@ let middleRow = document.querySelector('.middle')
 
 //function to create random array of colors -----------------------------------------------------------
 
-const randomizer = function () {
+const randomizer = () => {
     for (let i = 0; i < (turn + 2); i++) {
         let random = Math.random()
         let length = colors.length
@@ -28,7 +28,7 @@ const randomizer = function () {
 
 // function to add a random color to the sequence ------------------------------------------------
 
-const addRandom = function () {
+const addRandom = () => {
     let random = Math.random()
     let length = colors.length
     let index = Math.floor(length * random)
@@ -47,14 +47,14 @@ const highlighter = function(color) {
 
 }
 
-const gameLoop = function () {
-    setTimeout( function () {
+const gameLoop = () => {
+    setTimeout( () => {
         let currentColor = sequence[i]
         highlighter(currentColor)
-        setTimeout( function () {
+        setTimeout( () => {
             highlighter(currentColor)
         }, speed)
-        setTimeout( function () {
+        setTimeout( () => {
             if (mode === 'Standard') {
                 instructions.innerHTML = 'Now click the sequence of colors in the same order'
             } else {
@@ -86,8 +86,7 @@ readyButton.addEventListener('click', playGame)
 
 
 //now get the user's response -------------------------------------------------------------
-
-const clickHandler = function (evt) {
+const clickHandler = function(evt) {
     let guess = evt.target.id
     userResponse.push(guess)
 
@@ -115,8 +114,7 @@ for (let i = 0; i < squares.length; i++) {
 }
 
 //functions for handling a correct response or an incorrect response -------------------------------------------
-
-const winHandler = function () {
+const winHandler = () => {
     setTimeout( () => {instructions.innerHTML = "Correct! Press 'Ready' again to try the next level."}, 410)
     clearResponses()
     turn++
@@ -124,7 +122,7 @@ const winHandler = function () {
     addRandom()
 }
 
-const lossHandler = function () {
+const lossHandler = () => {
     if (turn != 1) {
         setTimeout( () => {instructions.innerHTML = "Not quite! Guess again, press 'Ready' to replay, or press 'Reset Game' to start over."}, 410)
         clearResponses()
@@ -135,7 +133,7 @@ const lossHandler = function () {
 }
 
 //now compare user's response to the sequence ----------------------------------------------------------
-const winTester = function (userResponse) {
+const winTester = function(userResponse) {
     let count = 0
     for (let i = 0; i < sequence.length; i++) {
         if (userResponse[i] === sequence[i]) {
@@ -151,7 +149,7 @@ const clearResponses = () => {
     userResponse = []
 }
 
-const reset = function () {
+const reset = () => {
     clearResponses()
     turn = 1
     updateLevel()
@@ -171,24 +169,21 @@ const reset = function () {
 let resetButton = document.querySelector('.reset-container button')
 resetButton.addEventListener('click', reset)
 
-const updateLevel = function () {
+const updateLevel = () => {
     let levelDisplay = document.querySelector('.level')
     levelDisplay.innerHTML = turn
 }
 
 //make button to speed up the game ---------------------------------------------------------------------------
-
-const speedUp = function () {
+const speedUp = () => {
     speed = speed * .5
-    console.log(speed)
 }
 
 let speedButton = document.querySelector('.speed-container button')
 speedButton.addEventListener('click', speedUp)
 
 //make button for reverse mode --------------------------------------------------------------------------------
-
-const reverseTester = function (userResponse) {
+const reverseTester = function(userResponse) {
     let count = 0
     for (let i = 0; i < sequence.length; i++) {
         if (userResponse[i] === sequence[(sequence.length - (i + 1))]) {
@@ -215,8 +210,7 @@ const updateMode = () => {
 
 
 //function to add color --------------------------------------------------------------------------------------
-
-const addColor = function () {
+const addColor = () => {
     if (colors.length === 4) {
         colors.push('purple')
         let div = document.createElement("DIV")
