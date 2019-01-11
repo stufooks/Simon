@@ -105,13 +105,17 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"../js/main.js":[function(require,module,exports) {
-//set up constants
-var squares = document.querySelectorAll('.squares-container .game-square');
+//set up variables
 var colors = ['green', 'red', 'yellow', 'blue'];
 var turn = 1;
 var sequence = [];
 var userResponse = [];
-var i = 0; //create random array of colors -------------------------------------------------------------
+var i = 0;
+var speed = 800;
+var mode = 'Standard';
+var squares = document.querySelectorAll('.squares-container .game-square');
+var instructions = document.querySelector('h4');
+var middleRow = document.querySelector('.middle'); //function to create random array of colors -----------------------------------------------------------
 
 var randomizer = function randomizer() {
   for (var _i = 0; _i < turn + 2; _i++) {
@@ -120,11 +124,18 @@ var randomizer = function randomizer() {
     var index = Math.floor(length * random);
     sequence.push(colors[index]);
   }
-}; // const testing = require('./randomizer.js')
-// change borders of game squares in order of the sequence ------------------------------------
+}; // function to add a random color to the sequence ------------------------------------------------
 
 
-var highlight = function highlight(color) {
+var addRandom = function addRandom() {
+  var random = Math.random();
+  var length = colors.length;
+  var index = Math.floor(length * random);
+  sequence.push(colors[index]);
+}; // toggle highlighted square in order of the sequence ------------------------------------------
+
+
+var highlighter = function highlighter(color) {
   var currentSquare = squares[0];
 
   for (var _i2 = 0; _i2 < squares.length; _i2++) {
@@ -133,40 +144,40 @@ var highlight = function highlight(color) {
     }
   }
 
-  currentSquare.style.opacity = 1;
-};
-
-var removeHighlight = function removeHighlight(color) {
-  var currentSquare = squares[0];
-
-  for (var _i3 = 0; _i3 < squares.length; _i3++) {
-    if (squares[_i3].id === color) {
-      currentSquare = squares[_i3];
-    }
-  }
-
-  currentSquare.style.opacity = .3;
+  currentSquare.classList.toggle('highlighted');
 };
 
 var gameLoop = function gameLoop() {
   setTimeout(function () {
     var currentColor = sequence[i];
-    console.log(currentColor);
-    highlight(currentColor);
+    highlighter(currentColor);
     setTimeout(function () {
-      removeHighlight(currentColor);
-    }, 800);
+      highlighter(currentColor);
+    }, speed);
+    setTimeout(function () {
+      if (mode === 'Standard') {
+        instructions.innerHTML = 'Now click the sequence of colors in the same order';
+      } else {
+        instructions.innerHTML = 'Now click the sequence of colors in the REVERSE order';
+      }
+    }, speed + speed * sequence.length + 100);
     i++;
 
     if (i < sequence.length) {
       gameLoop();
     }
-  }, 1300);
+  }, speed + 250);
 };
 
 var playGame = function playGame() {
-  sequence = [];
-  randomizer();
+  userResponse = [];
+  instructions.innerHTML = 'Watch the sequence of colors...';
+
+  if (turn === 1) {
+    sequence = [];
+    randomizer();
+  }
+
   console.log(sequence);
   i = 0;
   gameLoop();
@@ -175,53 +186,73 @@ var playGame = function playGame() {
 var readyButton = document.querySelector('.ready-container button');
 readyButton.addEventListener('click', playGame); //now get the user's response -------------------------------------------------------------
 
-var responsesContainer = document.querySelector('.responses-container');
-
 var clickHandler = function clickHandler(evt) {
   var guess = evt.target.id;
   userResponse.push(guess);
-  highlight(guess);
+  highlighter(guess);
   setTimeout(function () {
-    removeHighlight(guess);
-  }, 400);
+    highlighter(guess);
+  }, 150);
 
-  if (userResponse.length >= sequence.length) {
+  if (userResponse.length >= sequence.length && mode === 'Standard') {
     if (winTester(userResponse)) {
-      setTimeout(function () {
-        alert("Correct! Press 'Ready' again to try the next level.");
-      }, 410);
-      setTimeout(function () {
-        clearResponses();
-      }, 410);
-      turn++;
-      updateLevel();
+      winHandler();
     } else {
-      setTimeout(function () {
-        alert("Not quite. Guess again, press 'Ready' for a new sequence, or press 'Reset Game' to start over.");
-      }, 200);
-      setTimeout(function () {
-        clearResponses();
-      }, 410);
+      lossHandler();
+    }
+  }
+
+  if (userResponse.length >= sequence.length && mode === 'Reverse') {
+    if (reverseTester(userResponse)) {
+      winHandler();
+    } else {
+      lossHandler();
     }
   }
 };
 
-for (var _i4 = 0; _i4 < squares.length; _i4++) {
-  squares[_i4].addEventListener('click', clickHandler);
-} //now compare user's response to the sequence -----------------------------------------------
+for (var _i3 = 0; _i3 < squares.length; _i3++) {
+  squares[_i3].addEventListener('click', clickHandler);
+} //functions for handling a correct response or an incorrect response -------------------------------------------
+
+
+var winHandler = function winHandler() {
+  setTimeout(function () {
+    instructions.innerHTML = "Correct! Press 'Ready' again to try the next level.";
+  }, 410);
+  clearResponses();
+  turn++;
+  updateLevel();
+  addRandom();
+};
+
+var lossHandler = function lossHandler() {
+  if (turn != 1) {
+    setTimeout(function () {
+      instructions.innerHTML = "Not quite! Guess again, press 'Ready' to replay, or press 'Reset Game' to start over.";
+    }, 410);
+    clearResponses();
+  } else {
+    setTimeout(function () {
+      instructions.innerHTML = "Not quite! Guess again, or press 'Ready' to start over.";
+    }, 410);
+    clearResponses();
+  }
+}; //now compare user's response to the sequence ----------------------------------------------------------
 
 
 var winTester = function winTester(userResponse) {
   var count = 0;
 
-  for (var _i5 = 0; _i5 < sequence.length; _i5++) {
-    if (userResponse[_i5] === sequence[_i5]) {
+  for (var _i4 = 0; _i4 < sequence.length; _i4++) {
+    if (userResponse[_i4] === sequence[_i4]) {
       count++;
     }
   }
 
   return count === sequence.length;
-};
+}; //functions to move the game forward or reset the game -----------------------------------------------
+
 
 var clearResponses = function clearResponses() {
   userResponse = [];
@@ -231,15 +262,80 @@ var reset = function reset() {
   clearResponses();
   turn = 1;
   updateLevel();
+  sequence = [];
+  speed = 800;
+  mode = 'Standard';
+  updateMode();
+  instructions.innerHTML = "Press 'Ready' to begin";
+
+  if (colors.length > 4) {
+    colors.pop();
+    var purple = document.getElementById('purple');
+    purple.parentNode.removeChild(purple);
+  }
 };
 
 var resetButton = document.querySelector('.reset-container button');
 resetButton.addEventListener('click', reset);
 
 var updateLevel = function updateLevel() {
-  var levelDisplay = document.querySelector('span');
+  var levelDisplay = document.querySelector('.level');
   levelDisplay.innerHTML = turn;
+}; //make button to speed up the game ---------------------------------------------------------------------------
+
+
+var speedUp = function speedUp() {
+  speed = speed * .5;
+  console.log(speed);
 };
+
+var speedButton = document.querySelector('.speed-container button');
+speedButton.addEventListener('click', speedUp); //make button for reverse mode --------------------------------------------------------------------------------
+
+var reverseTester = function reverseTester(userResponse) {
+  var count = 0;
+
+  for (var _i5 = 0; _i5 < sequence.length; _i5++) {
+    if (userResponse[_i5] === sequence[sequence.length - (_i5 + 1)]) {
+      count++;
+    }
+  }
+
+  return count === sequence.length;
+};
+
+var reverseMode = function reverseMode() {
+  mode = 'Reverse';
+  updateMode();
+  console.log('Reverse mode');
+  instructions.innerHTML = 'You are now in Reverse Mode';
+};
+
+var reverseButton = document.querySelector('.reverse-container button');
+reverseButton.addEventListener('click', reverseMode);
+
+var updateMode = function updateMode() {
+  var modeDisplay = document.querySelector('.mode');
+  modeDisplay.innerHTML = " ".concat(mode);
+}; //function to add color
+
+
+var addColor = function addColor() {
+  if (colors.length === 4) {
+    colors.push('purple');
+    var div = document.createElement("DIV");
+    div.classList.add('game-square');
+    div.id = 'purple';
+    middleRow.appendChild(div);
+    squares = document.querySelectorAll('.squares-container .game-square');
+    squares[3].addEventListener('click', clickHandler);
+  } else {
+    alert('Too many colors!');
+  }
+};
+
+var addButton = document.querySelector('.add-container button');
+addButton.addEventListener('click', addColor);
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -267,7 +363,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "52106" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56366" + '/');
+>>>>>>> gh-pages
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
