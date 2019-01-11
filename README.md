@@ -1,7 +1,11 @@
 # Simon
+https://stufooks.github.io/Simon/
 
 ## Description
 I created this app as my first project for General Assembly. The app is meant to mimic the game the game 'Simon'. When the user presses 'Ready', the gameboard illuminates 3 lights in a random order. The user then clicks the lights in the same order. If the user clicks the lights in the correct order, they move on to the next level.
+
+## Example
+![ScreenShot](img/simon-screenshot.png)
 
 ## Features
 In addition to the basic game funtionality, I included:
@@ -20,9 +24,4 @@ My goal was to first make the basic game features work. I did that by first writ
     -Github Pages
 
 ## Unsolved Problems
-<<<<<<< HEAD
-The biggest issue I can see with my app is when the user tries to click through their answer too fast. If they click quickly through their response, the sequence of clicks does not seem to be captured and the game does not advance. 
-
-=======
 The biggest issue I can see with my app is when the user tries to click through their answer too fast. If they click quickly through their response, the sequence of clicks does not seem to be captured and the game does not advance.
->>>>>>> gh-pages
