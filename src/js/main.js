@@ -214,7 +214,7 @@ const updateMode = () => {
 }
 
 
-//function to add color
+//function to add color --------------------------------------------------------------------------------------
 
 const addColor = function () {
     if (colors.length === 4) {
