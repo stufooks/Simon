@@ -102,3 +102,11 @@ footer {
   margin-right: 3vw;
   font-family: "Raleway", sans-serif;
 }
+
+button:hover {
+  font-size: 1.2em;
+}
+
+.game-square:hover {
+  opacity: 1 !important;
+}
